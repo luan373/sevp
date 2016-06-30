@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<type-mapping>
+		<sql-type jdbc-type="NVARCHAR" hibernate-type='string'
+			not-null="true"></sql-type>
+	</type-mapping>
+
+
+
+
+
+
+<table-filter match-catalog="SEVP" match-schema="dbo"
+		match-name=".*">
+	</table-filter>
+	<table catalog="SEVP" schema="dbo" name="Produto"></table>
+	<table catalog="SEVP" schema="dbo" name="Pedido"></table>
+	<table catalog="SEVP" schema="dbo" name="TipoProduto"></table>
+	<table catalog="SEVP" schema="dbo" name="Cliente"></table>
+	<table catalog="SEVP" schema="dbo" name="ProdutoPedido"></table>
+	<table catalog="SEVP" schema="dbo" name="Usuario"></table>
+</hibernate-reverse-engineering>
