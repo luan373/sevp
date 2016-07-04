@@ -58,7 +58,7 @@ public class UsuarioDao extends AbstractDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void excluir(Usuario usuario) {
 		Session session = this.getSession();
 
@@ -71,6 +71,29 @@ public class UsuarioDao extends AbstractDao {
 			transaction.rollback();
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Método que valida se o login e senha estão corretos, se correto retorna
+	 * true, senão false.
+	 * 
+	 * @param usuario
+	 * @param senha
+	 * @return true/false
+	 */
+	public boolean validaLogin(String usuario, String senha) {
+		Criteria criteria = this.getSession().createCriteria(Usuario.class);
+		criteria.add(Restrictions.eq("usuario", usuario));
+		criteria.add(Restrictions.eq("senha", senha));
+
+		Usuario usr = (Usuario) criteria.uniqueResult();
+
+		if (usr != null) {
+			return true;
+		}
+
+		return false;
+
 	}
 
 }
