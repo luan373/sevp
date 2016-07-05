@@ -18,32 +18,32 @@
 <title>Login</title>
 
 <!-- Favicons-->
-<link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" href="resources/images/favicon/favicon-32x32.png" sizes="32x32" />
 <!-- Favicons-->
 <link rel="apple-touch-icon-precomposed"
-	href="images/favicon/apple-touch-icon-152x152.png" />
+	href="resources/images/favicon/apple-touch-icon-152x152.png" />
 <!-- For iPhone -->
 <meta name="msapplication-TileColor" content="#00bcd4" />
 <meta name="msapplication-TileImage"
-	content="images/favicon/mstile-144x144.png" />
+	content="resources/images/favicon/mstile-144x144.png" />
 <!-- For Windows Phone -->
 
 
 <!-- CORE CSS-->
-<link href="css/materialize.css" type="text/css" rel="stylesheet"
+<link href="resources/css/materialize.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
-<link href="css/style.min.css" type="text/css" rel="stylesheet"
+<link href="resources/css/style.min.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
 <!-- Custome CSS-->
-<link href="css/custom/custom.min.css" type="text/css" rel="stylesheet"
+<link href="resources/css/custom/custom.min.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
-<link href="css/layouts/page-center.css" type="text/css"
+<link href="resources/css/layouts/page-center.css" type="text/css"
 	rel="stylesheet" media="screen,projection" />
 
 <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
-<link href="js/plugins/prism/prism.css" type="text/css" rel="stylesheet"
+<link href="resources/js/plugins/prism/prism.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
-<link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css"
+<link href="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css"
 	type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
@@ -64,21 +64,24 @@
 				<div class="row">
 					<div class="input-field col s12 center">
 						<h4 class="form-login">Login</h4>
+						<h:outputText class="red-text" value="#{loginBean.mensagem}" />
 					</div>
 				</div>
 				<div class="row margin">
 					<div class="input-field col s12">
 						<i class="mdi-social-person-outline prefix"></i>
-						<h:inputText id="username" value="#{loginBean.usuario.usuario}" /><label
-							for="username" class="center-align">Usuário</label>
+						<h:inputText id="username" value="#{loginBean.usuario.usuario}"
+							required="true" requiredMessage="Campo obrigatório" />
+						<label for="username" class="center-align">Usuário</label>
 					</div>
 				</div>
 				<div class="row margin">
 					<div class="input-field col s12">
 						<i class="mdi-action-lock-outline prefix"></i>
 						<h:inputSecret id="password" type="password"
-							value="#{loginBean.usuario.senha}" /><label
-							for="password">Senha</label>
+							value="#{loginBean.usuario.senha}" required="true"
+							requiredMessage="Campo obrigatório" />
+						<label for="password">Senha</label>
 					</div>
 				</div>
 				<div class="row">
@@ -100,19 +103,19 @@
     ================================================ -->
 
 	<!-- jQuery Library -->
-	<script type="text/javascript" src="js/plugins/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="resources/js/plugins/jquery-1.11.2.min.js"></script>
 	<!--materialize js-->
-	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript" src="resources/js/materialize.min.js"></script>
 	<!--prism-->
-	<script type="text/javascript" src="js/plugins/prism/prism.js"></script>
+	<script type="text/javascript" src="resources/js/plugins/prism/prism.js"></script>
 	<!--scrollbar-->
 	<script type="text/javascript"
-		src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+		src="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
 	<!--plugins.js - Some Specific JS codes for Plugin Settings-->
-	<script type="text/javascript" src="js/plugins.min.js"></script>
+	<script type="text/javascript" src="resources/js/plugins.min.js"></script>
 	<!--custom-script.js - Add your own theme custom JS-->
-	<script type="text/javascript" src="js/custom-script.js"></script>
+	<script type="text/javascript" src="resources/js/custom-script.js"></script>
 
 </h:body>
 

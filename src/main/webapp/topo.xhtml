@@ -3,18 +3,31 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
+
+	<!-- Estrutura Dropdown -->
+	<h:form>
+		<ul id="dropdown1" class="dropdown-content">
+			<li><h:commandLink action="/usuario/pesquisa_usuario"
+					value="Pesquisar Usuário" /></li>
+			<li><h:commandLink action="/usuario/cadastro_usuario"
+					value="Cadastrar Usuário" /></li>
+		</ul>
+	</h:form>
 	<nav class="#455a64 blue-grey darken-2" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="#" class="brand-logo">SEVP</a>
-			<ul class="right hide-on-med-and-down">
-				<li><a href="#">Navbar Link</a></li>
-			</ul>
+			<h:form>
+				<h:commandLink id="logo-container" action="/index"
+					class="brand-logo">SEVP</h:commandLink>
+				<ul class="right hide-on-med-and-down">
+					<li><h:commandLink action="/login" value="Sair" /></li>
+				</ul>
+				<ul class="right hide-on-med-and-down">
 
-			<ul id="nav-mobile" class="side-nav">
-				<li><a href="#">Navbar Link</a></li>
-			</ul>
-			<a href="#" data-activates="nav-mobile" class="button-collapse"><i
-				class="material-icons">menu</i></a>
+					<li><a class="dropdown-button" data-activates="dropdown1">Usuário<i
+							class="material-icons right">arrow_drop_down</i>
+					</a></li>
+				</ul>
+			</h:form>
 		</div>
 	</nav>
 </ui:composition>

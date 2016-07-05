@@ -7,7 +7,6 @@ import br.com.sevp.controller.bll.LoginBll;
 import br.com.sevp.model.entity.Usuario;
 
 @ManagedBean(name = "loginBean")
-@ViewScoped
 public class LoginBean {
 	/**
 	 * A Classe LoginBean utiliza dados da classe Usuario, pois os campos para
@@ -16,18 +15,18 @@ public class LoginBean {
 
 	private LoginBll loginBll;
 	private Usuario usuario;
+	private String mensagem;
 
 	public LoginBean() {
 		this.loginBll = new LoginBll();
 		this.usuario = new Usuario();
 	}
 
-	
-
 	public String validaLogin() {
 		boolean validacao = loginBll.isSenhaCorreta(usuario.getUsuario(), usuario.getSenha());
 		if (!validacao) {
-			return "Usário ou senha incorretos";
+			setMensagem("Usuário ou senha incorretos");
+			return getMensagem();
 		}
 		return "index";
 	}
@@ -38,6 +37,14 @@ public class LoginBean {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
 	}
 
 }
