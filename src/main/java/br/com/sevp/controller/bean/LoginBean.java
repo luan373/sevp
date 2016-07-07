@@ -1,7 +1,6 @@
 package br.com.sevp.controller.bean;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 
 import br.com.sevp.controller.bll.LoginBll;
 import br.com.sevp.model.entity.Usuario;
@@ -17,11 +16,6 @@ public class LoginBean {
 	private Usuario usuario;
 	private String mensagem;
 
-	public LoginBean() {
-		this.loginBll = new LoginBll();
-		this.usuario = new Usuario();
-	}
-
 	public String validaLogin() {
 		boolean validacao = loginBll.isSenhaCorreta(usuario.getUsuario(), usuario.getSenha());
 		if (!validacao) {
@@ -29,6 +23,11 @@ public class LoginBean {
 			return getMensagem();
 		}
 		return "index";
+	}
+
+	public LoginBean() {
+		this.loginBll = new LoginBll();
+		this.usuario = new Usuario();
 	}
 
 	public Usuario getUsuario() {

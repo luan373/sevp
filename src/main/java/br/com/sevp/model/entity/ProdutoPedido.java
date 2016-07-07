@@ -6,6 +6,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,8 +40,7 @@ public class ProdutoPedido implements Serializable {
 		this.valorUnitario = valorUnitario;
 	}
 
-	public ProdutoPedido(long idProdutoPedido, Pedido pedido, Produto produto, Integer quantidade,
-			long valorUnitario) {
+	public ProdutoPedido(long idProdutoPedido, Pedido pedido, Produto produto, Integer quantidade, long valorUnitario) {
 		this.idProdutoPedido = idProdutoPedido;
 		this.pedido = pedido;
 		this.produto = produto;
@@ -49,7 +49,7 @@ public class ProdutoPedido implements Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue
 	@Column(name = "IdProdutoPedido", unique = true, nullable = false)
 	public long getIdProdutoPedido() {
 		return this.idProdutoPedido;
@@ -102,6 +102,5 @@ public class ProdutoPedido implements Serializable {
 		return "ProdutoPedido [idProdutoPedido=" + idProdutoPedido + ", quantidade=" + quantidade + ", valorUnitario="
 				+ valorUnitario + "]";
 	}
-	
-	
+
 }

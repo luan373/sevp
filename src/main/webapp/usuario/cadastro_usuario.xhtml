@@ -6,12 +6,125 @@
 
 <ui:include src="/head.xhtml" />
 <h:body>
-<!--  -->
+	<!--  -->
 	<ui:include src="/topo.xhtml" />
+	<main>
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m12 l12">
+				<h5 class="breadcrumbs-title">Cadastrar Usuário</h5>
 
-	jordet cadastro
+				<div class="row">
+					<h:form class="formValidate" id="formValidate" prependId="false">
+						<div class="row">
+							<div class="input-field col s12">
+								<h:inputText value="#{usuarioBean.usuario.nome}" id="nome"
+									class="validate" data-error=".errorTxt1" />
+								<h:outputLabel class="active" value="Nome" for="nome" />
+								<h:message class="red-text" for="nome" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<h:inputText value="#{usuarioBean.usuario.usuario}" id="usuario"
+									class="validate" data-error=".errorTxt2" />
+								<h:outputLabel class="active" value="Usuário" for="usuario" />
+								<h:message class="red-text" for="usuario" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<h:inputSecret value="#{usuarioBean.usuario.senha}" id="senha"
+									class="validate" data-error=".errorTxt3" />
+								<h:outputLabel class="active" value="Senha" for="senha" />
+								<h:message for="senha" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<h:inputSecret id="confirmaSenha" class="validate"
+									data-error=".errorTxt4" />
+								<h:outputLabel class="active" value="Confirmar Senha"
+									for="confirmaSenha" />
+								<div class="errorTxt4"></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<h:selectBooleanCheckbox class="filled-in" id="ativo"
+									value="#{usuarioBean.usuario.ativo}" />
+								<h:outputLabel class="active" value="Ativo" for="ativo" />
+							</div>
+						</div>
+						<div class="row">
+							<h:commandButton
+								class="btn waves-effect waves-light right submit"
+								action="#{usuarioBean.cadastraUsuario}" value="Enviar">
+								<f:ajax event="action" execute="@form" immediate="false" />
+							</h:commandButton>
+						</div>
+
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</main>
+	<ui:include src="/fundo.xhtml" />
+	<h:outputScript library="js/validation" name="jquery.validate.js" />
+
+	<h:outputScript>
+	$("#formValidate").validate({
+        rules: {
+        	nome: {
+        		required: true,
+        		minlength: 5,
+        	},
+        	usuario: {
+        		required: true,
+        		minlength: 5,
+        	},
+            senha: {
+				required: true,
+				minlength: 5
+				
+			},
+			confirmaSenha: {
+				required: true,
+				equalTo: "#senha"
+			},
+        },
+        //For custom messages
+        messages: {
+            nome:{
+            	required: "Campo obrigatório",
+            	minlength: "No mínimo cinco caracteres",
+            },
+            usuario:{
+                required: "É necessário confirmar a senha",
+                minlength: "No mínimo cinco caracteres",
+            },
+            senha:{
+            	required: "Campo obrigatório",
+                minlength: "Informe uma senha com mais de 5 caracteres",
+            },
+             confirmaSenha:{
+                equalTo: "As senhas não coincidem",
+                required: "É necessário confirmar a senha",
+            },
+        },       
+        errorElement : 'div',
+        errorPlacement: function(error, element) {
+          var placement = $(element).data('error');
+          if (placement) {
+            $(placement).append(error);
+          } else {
+            error.insertAfter(element);
+          }
+        }
+     });
 	
-	
-<ui:include src="/fundo.xhtml" />
+	</h:outputScript>
+
 </h:body>
 </html>

@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -81,7 +82,7 @@ public class Pedido implements Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue
 	@Column(name = "IdPedido", unique = true, nullable = false)
 	public long getIdPedido() {
 		return this.idPedido;

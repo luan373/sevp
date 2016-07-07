@@ -1,16 +1,18 @@
 package br.com.sevp.model.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.sevp.model.entity.Usuario;
 
-public class UsuarioDao extends AbstractDao {
+public class UsuarioDao extends AbstractDao implements Serializable {
 
 	public UsuarioDao() {
 		super();
@@ -30,6 +32,22 @@ public class UsuarioDao extends AbstractDao {
 		Criteria criteria = this.getSession().createCriteria(Usuario.class);
 		List<Usuario> lista = criteria.list();
 		return lista;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Usuario> pesquisar(Usuario usuario) {
+		Criteria criteria = this.getSession().createCriteria(Usuario.class);
+		if (usuario.getNome() != null && !usuario.getNome().equals("")) {
+			criteria.add(Restrictions.like("nome", usuario.getNome(), MatchMode.ANYWHERE));
+		}
+
+		if (usuario.getUsuario() != null && !usuario.getUsuario().equals("")) {
+			criteria.add(Restrictions.like("usuario", usuario.getUsuario(), MatchMode.ANYWHERE));
+		}
+		
+		List<Usuario> resultado = criteria.list();
+		
+		return resultado;
 	}
 
 	public void inserir(Usuario usuario) {

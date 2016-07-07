@@ -5,7 +5,7 @@
 	version="3.1">
 	<display-name>SEVP</display-name>
 	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>login.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
@@ -18,11 +18,12 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 
-
-	<session-config>
-		<session-timeout>30</session-timeout>
-	</session-config>
-
+	<context-param>
+		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+		<param-value>0</param-value> <!-- cache desligado -->
+	</context-param>
+	<!-- <session-config> <session-timeout>30</session-timeout> </session-config> -->
+	
 	<!-- Server side automatically handled errors -->
 	<!-- <error-page> -->
 	<!-- <error-code>403</error-code> -->
