@@ -17,6 +17,10 @@ public class UsuarioBll implements Serializable {
 		this.usuarioDao.inserir(usuario);
 	}
 
+	public void alterar(Usuario usuario) {
+		this.usuarioDao.alterar(usuario);
+	}
+
 	public List<Usuario> pesquisar(Usuario usuario) {
 
 		List<Usuario> resultado = usuarioDao.pesquisar(usuario);

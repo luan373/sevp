@@ -3,32 +3,32 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<div class="navbar-fixed">
-	<!-- Estrutura Dropdown -->
-	<h:form>
-		<ul id="dropdown1" class="dropdown-content">
-			<li><h:commandLink action="/usuario/pesquisa_usuario"
-					value="Pesquisar Usuário" /></li>
-			<li><h:commandLink action="/usuario/cadastro_usuario"
-					value="Cadastrar Usuário" /></li>
-		</ul>
-	</h:form>
-	<nav class="blue-grey darken-3" role="navigation">
-		<div class="nav-wrapper container">
-			<h:form>
-				<h:commandLink id="logo-container" action="/index"
-					class="brand-logo">SEVP</h:commandLink>
-				<ul class="right hide-on-med-and-down">
-					<li><h:commandLink action="/login" value="Sair" /></li>
-				</ul>
-				<ul class="right hide-on-med-and-down">
+	<div class="navbar-fixed">
+		<!-- Estrutura Dropdown -->
+		<h:form>
+			<ul id="dropdown1" class="dropdown-content">
+				<li><h:commandLink action="/usuario/pesquisa_usuario"
+						value="Pesquisar Usuário" /></li>
+				<li><h:commandLink action="/usuario/formulario_usuario"
+						value="Cadastrar Usuário" /></li>
+			</ul>
+		</h:form>
+		<nav class="blue-grey darken-3" role="navigation">
+			<div class="nav-wrapper container">
+				<h:form>
+					<h:commandLink id="logo-container" action="/index"
+						class="brand-logo">SEVP</h:commandLink>
+					<ul class="right hide-on-med-and-down">
+						<li><h:commandLink action="/login" value="Sair" /></li>
+					</ul>
+					<ul class="right hide-on-med-and-down">
 
-					<li><a class="dropdown-button" data-activates="dropdown1">Usuário<i
-							class="material-icons right">arrow_drop_down</i>
-					</a></li>
-				</ul>
-			</h:form>
-		</div>
-	</nav>
+						<li><a class="dropdown-button" data-activates="dropdown1">Usuário<i
+								class="material-icons right">arrow_drop_down</i>
+						</a></li>
+					</ul>
+				</h:form>
+			</div>
+		</nav>
 	</div>
 </ui:composition>

@@ -40,11 +40,9 @@
 					</h:form>
 
 					<div id="resultado">
-						<h:form id="tabelaUsuario"
-							onmousemove="$('.tablesorter').tablesorter();">
+						<h:form id="tabelaUsuario">
 							<h:dataTable id="dataTableUsuario" class="tablesorter striped"
-								value="#{usuarioBean.lista}" var="usuario"
-								columnClasses="first">
+								value="#{usuarioBean.lista}" var="usuario">
 								<h:column>
 									<f:facet name="header">
 										<h:outputText value="ID Usuario" />
@@ -69,6 +67,16 @@
 									</f:facet>
 									<h:outputText value="#{usuario.ativo}" />
 								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Ações" />
+									</f:facet>
+									<h:commandButton action="#{usuarioBean.direcionaPagina()}" value="Alterar">
+										<f:setPropertyActionListener value="#{usuario}"
+											target="#{usuarioBean.usuario}" />
+
+									</h:commandButton>
+								</h:column>
 							</h:dataTable>
 						</h:form>
 					</div>
@@ -84,22 +92,13 @@
 	</main>
 	<ui:include src="/fundo.xhtml" />
 	<!--  Script de pesquisa -->
-	<h:outputScript library="js/plugins/tablesorter"
-		name="jquery.tablesorter.min.js" />
+	<!-- <h:outputScript library="js/plugins/tablesorter"
+		name="jquery.tablesorter.min.js" /> -->
 	<h:outputScript> 
 	$(function() {
-	//Função do Table Sorter
 	// Esconde a tabela quando a página é carregada    
-    $("#tabelaUsuario").hide();
-    
-	$(document).ready(function() 
-    {        
-		//$('.tablesorter').tablesorter(); 
-		console.log("aff"); 	
-	});
-    
+    $("#tabelaUsuario").hide();    
 	
-	//$('.tablesorter').tablesorter();
 	});
     function pesquisarLotes() {
 		$("#tabelaUsuario").show();	

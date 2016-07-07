@@ -12,7 +12,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col s12 m12 l12">
-				<h5 class="breadcrumbs-title">Cadastrar Usuário</h5>
+				<h5 class="breadcrumbs-title">#{usuarioBean.addTituloPagina()}</h5>
+				<h5 class="breadcrumbs-title">#{usuarioBean.usuario.idUsuario}</h5>
 
 				<div class="row">
 					<h:form class="formValidate" id="formValidate" prependId="false">
@@ -59,7 +60,7 @@
 						<div class="row">
 							<h:commandButton
 								class="btn waves-effect waves-light right submit"
-								action="#{usuarioBean.cadastraUsuario}" value="Enviar">
+								action="#{usuarioBean.validaUsuario()}" value="Enviar">
 								<f:ajax event="action" execute="@form" immediate="false" />
 							</h:commandButton>
 						</div>

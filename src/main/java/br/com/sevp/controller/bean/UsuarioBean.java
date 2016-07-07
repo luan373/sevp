@@ -1,9 +1,12 @@
 package br.com.sevp.controller.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 
 import br.com.sevp.controller.bll.UsuarioBll;
@@ -20,8 +23,13 @@ public class UsuarioBean implements Serializable {
 
 	List<Usuario> lista = null;
 
-	public String cadastraUsuario() {
-		this.usuarioBll.inserir(usuario);
+	public String validaUsuario() {
+		if (usuario.getIdUsuario() == 0) {
+			this.usuarioBll.inserir(usuario);
+		} else {
+			this.usuarioBll.alterar(usuario);
+		}
+
 		return "/index";
 	}
 
@@ -30,9 +38,29 @@ public class UsuarioBean implements Serializable {
 	}
 
 	public UsuarioBean() {
-		this.usuario = new Usuario();
+		System.out.println("Construtor");
+		if (this.usuario == null) {
+			this.usuario = new Usuario();			
+		}
 		this.usuarioBll = new UsuarioBll();
 		this.lista = new ArrayList<Usuario>();
+		System.out.println(usuario);
+	}
+
+	public String addTituloPagina() {
+		if (usuario.getIdUsuario() == 0) {
+			return "Cadastrar Usuário";
+		}
+		return "Excluir Usuário";
+	}
+
+	public String direcionaPagina() throws IOException {
+		/*
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+		ec.redirect(ec.getRequestContextPath() + "/usuario/formulario_usuario.xhtml");
+		*/
+		return "formulario_usuario";
+		
 	}
 
 	public Usuario getUsuario() {
