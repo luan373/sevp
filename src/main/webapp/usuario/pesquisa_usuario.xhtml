@@ -71,22 +71,16 @@
 									<f:facet name="header">
 										<h:outputText value="Ações" />
 									</f:facet>
-									<h:commandButton action="#{usuarioBean.direcionaPagina()}" value="Alterar">
+									<h:commandButton action="formulario_usuario" value="Alterar">
 										<f:setPropertyActionListener value="#{usuario}"
 											target="#{usuarioBean.usuario}" />
-
 									</h:commandButton>
 								</h:column>
 							</h:dataTable>
 						</h:form>
 					</div>
-
 				</div>
 			</div>
-
-
-
-
 		</div>
 	</div>
 	</main>

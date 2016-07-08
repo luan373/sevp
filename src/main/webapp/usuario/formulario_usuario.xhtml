@@ -13,9 +13,19 @@
 		<div class="row">
 			<div class="col s12 m12 l12">
 				<h5 class="breadcrumbs-title">#{usuarioBean.addTituloPagina()}</h5>
-				<h5 class="breadcrumbs-title">#{usuarioBean.usuario.idUsuario}</h5>
 
 				<div class="row">
+					<!-- Estrutura da modal -->
+					<div id="modal1" class="modal">
+						<div class="modal-content">
+							<h4>Modal Header</h4>
+							<p>A bunch of text</p>
+						</div>
+						<div class="modal-footer">
+							<a href="#!"
+								class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+						</div>
+					</div>
 					<h:form class="formValidate" id="formValidate" prependId="false">
 						<div class="row">
 							<div class="input-field col s12">
@@ -36,7 +46,7 @@
 						<div class="row">
 							<div class="input-field col s12">
 								<h:inputSecret value="#{usuarioBean.usuario.senha}" id="senha"
-									class="validate" data-error=".errorTxt3" />
+									class="validate" data-error=".errorTxt3" redisplay="true" />
 								<h:outputLabel class="active" value="Senha" for="senha" />
 								<h:message for="senha" />
 							</div>
@@ -44,7 +54,8 @@
 						<div class="row">
 							<div class="input-field col s12">
 								<h:inputSecret id="confirmaSenha" class="validate"
-									data-error=".errorTxt4" />
+									data-error=".errorTxt4" value="#{usuarioBean.usuario.senha}"
+									redisplay="true" />
 								<h:outputLabel class="active" value="Confirmar Senha"
 									for="confirmaSenha" />
 								<div class="errorTxt4"></div>
@@ -63,13 +74,29 @@
 								action="#{usuarioBean.validaUsuario()}" value="Enviar">
 								<f:ajax event="action" execute="@form" immediate="false" />
 							</h:commandButton>
-						</div>
+							<a class="waves-effect waves-light btn modal-trigger"
+								href="#modal1">Modal</a>
+							<!-- <h:commandLink
+								class="btn waves-effect waves-light right submit"
+								value="Excluir" rendered="#{usuarioBean.usuario.idUsuario!=0}"
+								onclick="$('#modal1').show();">
 
+							</h:commandLink> -->
+							<h:commandButton
+								class="btn waves-effect waves-light right submit"
+								action="#{usuarioBean.direcionaPagina('pesquisa_usuario')}"
+								value="Cancelar">
+							</h:commandButton>
+
+						</div>
 					</h:form>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
+
 	</main>
 	<ui:include src="/fundo.xhtml" />
 	<h:outputScript library="js/validation" name="jquery.validate.js" />

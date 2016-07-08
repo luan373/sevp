@@ -5,14 +5,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.context.ExternalContext;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import br.com.sevp.controller.bll.UsuarioBll;
 import br.com.sevp.model.entity.Usuario;
 
-@ViewScoped
+@SessionScoped
+@Named
 public class UsuarioBean implements Serializable {
 	/**
 	 * 
@@ -30,6 +31,8 @@ public class UsuarioBean implements Serializable {
 			this.usuarioBll.alterar(usuario);
 		}
 
+		mataSessao();
+
 		return "/index";
 	}
 
@@ -40,7 +43,7 @@ public class UsuarioBean implements Serializable {
 	public UsuarioBean() {
 		System.out.println("Construtor");
 		if (this.usuario == null) {
-			this.usuario = new Usuario();			
+			this.usuario = new Usuario();
 		}
 		this.usuarioBll = new UsuarioBll();
 		this.lista = new ArrayList<Usuario>();
@@ -51,16 +54,17 @@ public class UsuarioBean implements Serializable {
 		if (usuario.getIdUsuario() == 0) {
 			return "Cadastrar Usuário";
 		}
-		return "Excluir Usuário";
+		return "Alterar Usuário";
 	}
 
-	public String direcionaPagina() throws IOException {
-		/*
-		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-		ec.redirect(ec.getRequestContextPath() + "/usuario/formulario_usuario.xhtml");
-		*/
-		return "formulario_usuario";
-		
+	public String direcionaPagina(String local) throws IOException {
+		mataSessao();
+
+		return local;
+	}
+
+	private void mataSessao() {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioBean", null);
 	}
 
 	public Usuario getUsuario() {
