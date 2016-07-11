@@ -11,6 +11,11 @@ import org.hibernate.criterion.Restrictions;
 import br.com.sevp.model.entity.TipoProduto;
 
 public class TipoProdutoDao extends AbstractDao {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7036472305363552571L;
+
 	public TipoProdutoDao() {
 		super();
 	}

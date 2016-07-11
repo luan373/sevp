@@ -9,6 +9,11 @@ import org.hibernate.criterion.Restrictions;
 import br.com.sevp.model.entity.Pedido;
 
 public class PedidoDao extends AbstractDao {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1163940217556215745L;
+
 	public PedidoDao() {
 		super();
 	}

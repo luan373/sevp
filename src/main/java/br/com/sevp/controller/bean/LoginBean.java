@@ -26,12 +26,12 @@ public class LoginBean {
 			setMensagem("Usuário ou senha incorretos");
 			return getMensagem();
 		}
-		return "index";
+		return "/index";
 	}
 
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "login?faces-redirect=true";
+		return "/login?faces-redirect=true";
 	}
 
 	public LoginBean() {

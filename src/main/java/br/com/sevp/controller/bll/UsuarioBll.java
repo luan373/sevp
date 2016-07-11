@@ -7,6 +7,10 @@ import br.com.sevp.model.dao.UsuarioDao;
 import br.com.sevp.model.entity.Usuario;
 
 public class UsuarioBll implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -84145567180744470L;
 	UsuarioDao usuarioDao = null;
 
 	public UsuarioBll() {
@@ -19,6 +23,10 @@ public class UsuarioBll implements Serializable {
 
 	public void alterar(Usuario usuario) {
 		this.usuarioDao.alterar(usuario);
+	}
+
+	public void excluir(Usuario usuario) {
+		this.usuarioDao.excluir(usuario);
 	}
 
 	public List<Usuario> pesquisar(Usuario usuario) {

@@ -11,6 +11,11 @@ import org.hibernate.criterion.Restrictions;
 import br.com.sevp.model.entity.Cliente;
 
 public class ClienteDao extends AbstractDao {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6212327755892061552L;
+
 	public ClienteDao() {
 		super();
 	}

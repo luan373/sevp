@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:include src="/head.xhtml" />
+<h:body>
+	<ui:include src="/topo.xhtml" />
+	<main> <!-- Modal Trigger --> <h:button type="button"
+		class="btn modal-trigger" value="Modal" id="apresenta" /> <!-- Modal Structure -->
+	<div id="modal1" class="modal">
+		<div class="modal-content">
+			<h4>Modal Header</h4>
+			<p>A bunch of text</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#!"
+				class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+		</div>
+	</div>
+	</main>
+	<ui:include src="/fundo.xhtml" />
+	<h:outputScript>
+	$(function() {
+   
+	$('#apresenta').click(function() {
+	console.log("aff");
+	
+	$('#modal1').openModal();
+    	//$('#modal1').modal('show');
+    	//$('#modal1').leanModal();
+	});
+		
+		});
+	 $(document).ready(function(){
+	  	
+	 
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    
+    
+  	});
+      
+	</h:outputScript>
+</h:body>
+</html>

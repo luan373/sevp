@@ -14,6 +14,11 @@ import br.com.sevp.model.entity.Usuario;
 
 public class UsuarioDao extends AbstractDao implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6454839206750584797L;
+
 	public UsuarioDao() {
 		super();
 	}

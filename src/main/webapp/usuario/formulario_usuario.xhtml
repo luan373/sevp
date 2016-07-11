@@ -16,23 +16,33 @@
 
 				<div class="row">
 					<!-- Estrutura da modal -->
-					<div id="modal1" class="modal">
-						<div class="modal-content">
-							<h4>Modal Header</h4>
-							<p>A bunch of text</p>
+					<h:form>
+						<div id="modal1" class="modal">
+							<div class="modal-content">
+								<h4>Confirmação</h4>
+								<p>Essa opção excluirá o registro, deseja continuar?</p>
+							</div>
+
+							<div class="modal-footer">
+								<h:commandButton value="Confirmar"
+									class="modal-action modal-close waves-effect waves-green btn-flat"
+									action="#{usuarioBean.excluiUsuario()}" type="submit" />
+								<h:commandButton value="Cancelar"
+									class="modal-action modal-close waves-effect waves-red btn-flat"
+									type="button" />
+							</div>
 						</div>
-						<div class="modal-footer">
-							<a href="#!"
-								class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-						</div>
-					</div>
+					</h:form>
+					<!-- Fim estrutura modal -->
 					<h:form class="formValidate" id="formValidate" prependId="false">
 						<div class="row">
 							<div class="input-field col s12">
-								<h:inputText value="#{usuarioBean.usuario.nome}" id="nome"
-									class="validate" data-error=".errorTxt1" />
-								<h:outputLabel class="active" value="Nome" for="nome" />
-								<h:message class="red-text" for="nome" />
+								<h:inputText value="#{usuarioBean.usuario.nome}" id="campo"
+									class="validate">
+									<f:validator validatorId="#{validador}" />
+								</h:inputText>
+								<h:outputLabel class="active" value="Nome" for="campo" />
+								<h:message for="campo" class="red-text" />
 							</div>
 						</div>
 						<div class="row">
@@ -71,87 +81,49 @@
 						<div class="row">
 							<h:commandButton
 								class="btn waves-effect waves-light right submit"
-								action="#{usuarioBean.validaUsuario()}" value="Enviar">
+								action="#{usuarioBean.validaUsuario()}" value="Salvar"
+								id="salvarUsuario">
 								<f:ajax event="action" execute="@form" immediate="false" />
 							</h:commandButton>
-							<a class="waves-effect waves-light btn modal-trigger"
-								href="#modal1">Modal</a>
-							<!-- <h:commandLink
+							<h:commandButton
 								class="btn waves-effect waves-light right submit"
-								value="Excluir" rendered="#{usuarioBean.usuario.idUsuario!=0}"
-								onclick="$('#modal1').show();">
+								value="excluir" id="apresenta" type="button"
+								rendered="#{usuarioBean.usuario.idUsuario!=0}">
+							</h:commandButton>
 
-							</h:commandLink> -->
+							<!-- <h:button
+								class="btn waves-effect waves-light right submit modal-trigger"
+								id="apresenta" rendered="#{usuarioBean.usuario.idUsuario!=0}"
+								type="button" value="Excluir" /> -->
 							<h:commandButton
 								class="btn waves-effect waves-light right submit"
 								action="#{usuarioBean.direcionaPagina('pesquisa_usuario')}"
 								value="Cancelar">
 							</h:commandButton>
-
 						</div>
 					</h:form>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
 	</main>
 	<ui:include src="/fundo.xhtml" />
 	<h:outputScript library="js/validation" name="jquery.validate.js" />
 
 	<h:outputScript>
-	$("#formValidate").validate({
-        rules: {
-        	nome: {
-        		required: true,
-        		minlength: 5,
-        	},
-        	usuario: {
-        		required: true,
-        		minlength: 5,
-        	},
-            senha: {
-				required: true,
-				minlength: 5
-				
-			},
-			confirmaSenha: {
-				required: true,
-				equalTo: "#senha"
-			},
-        },
-        //For custom messages
-        messages: {
-            nome:{
-            	required: "Campo obrigatório",
-            	minlength: "No mínimo cinco caracteres",
-            },
-            usuario:{
-                required: "É necessário confirmar a senha",
-                minlength: "No mínimo cinco caracteres",
-            },
-            senha:{
-            	required: "Campo obrigatório",
-                minlength: "Informe uma senha com mais de 5 caracteres",
-            },
-             confirmaSenha:{
-                equalTo: "As senhas não coincidem",
-                required: "É necessário confirmar a senha",
-            },
-        },       
-        errorElement : 'div',
-        errorPlacement: function(error, element) {
-          var placement = $(element).data('error');
-          if (placement) {
-            $(placement).append(error);
-          } else {
-            error.insertAfter(element);
-          }
-        }
-     });
+
+	$(function() {
 	
+	$('#apresenta').click(function() {
+		$('#modal1').openModal();
+	});
+	
+	});
+	
+	$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  	});
 	</h:outputScript>
 
 </h:body>

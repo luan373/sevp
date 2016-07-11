@@ -32,6 +32,13 @@ public class UsuarioBean implements Serializable {
 		}
 
 		mataSessao();
+		return "/index";
+	}
+
+	public String excluiUsuario() {
+		this.usuarioBll.excluir(usuario);
+		System.out.println("excluiuuuuu");
+		mataSessao();
 
 		return "/index";
 	}
