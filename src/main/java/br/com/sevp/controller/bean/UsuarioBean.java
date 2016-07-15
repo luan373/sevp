@@ -1,20 +1,19 @@
 package br.com.sevp.controller.bean;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 
 import br.com.sevp.controller.bll.UsuarioBll;
 import br.com.sevp.model.entity.Usuario;
 
+@ManagedBean(name = "usuarioBean")
 @SessionScoped
-@Named
-public class UsuarioBean implements Serializable {
+public class UsuarioBean {
 	/**
 	 * 
 	 */
@@ -68,6 +67,10 @@ public class UsuarioBean implements Serializable {
 		mataSessao();
 
 		return local;
+	}
+
+	private void menssagemSucesso() {
+		
 	}
 
 	private void mataSessao() {

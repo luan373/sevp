@@ -48,7 +48,8 @@
 	href="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css"
 	type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
-
+<script type="text/javascript"
+	src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js" />
 <h:body class="blue-grey">
 	<!-- Start Page Loading 
 	<div id="loader-wrapper">
@@ -62,7 +63,7 @@
 
 	<div id="login-page" class="row">
 		<div class="col s12 z-depth-4 card-panel">
-			<h:form class="login-form">
+			<h:form id="form-login" class="login-form" novalidate="novalidate">
 				<div class="row">
 					<div class="input-field col s12 center">
 						<h4 class="form-login">Login</h4>
@@ -71,29 +72,27 @@
 				</div>
 				<div class="row margin">
 					<div class="input-field col s12">
-						<i class="mdi-social-person-outline prefix"></i>
-						<h:inputText id="username" value="#{loginBean.login}"
-							required="true" requiredMessage="Campo obrigatório" />
-						<label for="username" class="center-align">Usuário</label>
+						<!-- <i class="mdi-social-person-outline prefix"></i> -->
+						<h:inputText id="username" name="username"
+							value="#{loginBean.login}" class="validate" />
+						<h:outputLabel value="Usuário" for="username" class="center-align" />
 					</div>
 				</div>
 				<div class="row margin">
 					<div class="input-field col s12">
-						<i class="mdi-action-lock-outline prefix"></i>
-						<h:inputSecret id="password" type="password"
-							value="#{loginBean.senha}" required="true"
-							requiredMessage="Campo obrigatório" />
-						<label for="password">Senha</label>
+						<!-- <i class="mdi-action-lock-outline prefix"></i> -->
+						<h:inputSecret id="password" name="password" type="password"
+							value="#{loginBean.senha}" class="validate" />
+						<h:outputLabel value="Senha" for="password" class="center-align" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12 ">
 						<h:commandButton class="btn waves-effect waves-light submit right"
-							type="submit" name="enviar" value="Enviar" ajax="false"
+							id="enviar" type="submit" name="enviar" value="Enviar"
 							action="#{loginBean.validaLogin()}" />
 					</div>
 				</div>
-
 			</h:form>
 		</div>
 	</div>
@@ -106,21 +105,68 @@
 
 	<!-- jQuery Library -->
 	<script type="text/javascript"
-		src="resources/js/plugins/jquery-1.11.2.min.js"></script>
-	<!--materialize js-->
+		src="resources/js/plugins/jquery-2.1.1.min.js">
+	</script>
+	<!-- materialize js -->
 	<script type="text/javascript" src="resources/js/materialize.min.js"></script>
 	<!--prism-->
 	<script type="text/javascript"
 		src="resources/js/plugins/prism/prism.js"></script>
-	<!--scrollbar-->
+	<!-- scrollbar -->
 	<script type="text/javascript"
 		src="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
-	<!--plugins.js - Some Specific JS codes for Plugin Settings-->
+	<!-- plugins.js - Some Specific JS codes for Plugin Settings -->
 	<script type="text/javascript" src="resources/js/plugins.min.js"></script>
-	<!--custom-script.js - Add your own theme custom JS-->
+	<!-- custom-script.js - Add your own theme custom JS -->
 	<script type="text/javascript" src="resources/js/custom-script.js"></script>
 
+	<h:outputScript library="js/validation" name="jquery.validate.js" />
+	<!-- <h:outputScript>
+	$.validator.setDefaults({
+	errorClass: 'invalid',
+    validClass: "valid",
+    errorPlacement: function (error, element) {
+        $(element)
+            .closest("form")
+            .find("label[for='" + element.attr("id") + "']")
+            .attr('data-error', error.text());
+    },
+		submitHandler: function() {
+			console.log("submitted!");
+		}
+	});
+
+	
+		// validate signup form on keyup and submit
+		$("#form-login").validate({
+			rules: {
+				username: {
+					required: true,
+					minlength: 2
+				},
+				password: {
+					required: true,
+					minlength: 5
+				},
+			},
+			messages: {
+				username: {
+					required: "Please enter a username",
+					minlength: "Your username must consist of at least 2 characters"
+				},
+				password: {
+					required: "Please provide a password",
+					minlength: "Your password must be at least 5 characters long"
+				},				
+			}
+		});
+	</h:outputScript>
+	<h:outputStylesheet>
+	label {
+    width: 100%;
+	}
+	</h:outputStylesheet> -->
 </h:body>
 
 </html>

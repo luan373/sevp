@@ -33,7 +33,7 @@
 	<!-- </error-page> -->
 	<error-page>
 		<error-code>404</error-code>
-		<location>/errorPages/page-404.xhtml</location>
+		<location>/errorPages/page-404.xhtml?faces-redirect=true</location>
 	</error-page>
 	<!-- <error-page> -->
 	<!-- <error-code>503</error-code> -->
@@ -41,6 +41,6 @@
 	<!-- </error-page> -->
 	<error-page>
 		<error-code>500</error-code>
-		<location>/errorPages/page-500.xhtml</location>
+		<location>/errorPages/page-500.xhtml?faces-redirect=true</location>
 	</error-page>
 </web-app>

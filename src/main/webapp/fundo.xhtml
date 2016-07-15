@@ -46,8 +46,11 @@
 
 	<!--  Scripts-->
 	<h:outputStylesheet library="css" name="materialize.css" />
-	<h:outputScript library="js/plugins" name="jquery-2.1.1.min.js" />
-	<h:outputScript library="js" name="materialize.min.js" />
-	<h:outputScript library="js" name="init.js" />
+	<h:outputScript library="js/plugins" name="jquery-2.1.1.min.js"
+		target="head" />
+	<h:outputScript library="js/validation" name="jquery.validate.js" />
+	<h:outputScript library="js" name="materialize.min.js" target="head" />
+	<h:outputScript library="js" name="init.js" target="head" />
+	<h:outputScript library="js/page" name="app.js" target="head" />
 
 </ui:composition>

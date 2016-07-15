@@ -26,80 +26,73 @@
 							<div class="modal-footer">
 								<h:commandButton value="Confirmar"
 									class="modal-action modal-close waves-effect waves-green btn-flat"
-									action="#{usuarioBean.excluiUsuario()}" type="submit" />
+									action="#{usuarioBean.excluiUsuario()}" type="submit"
+									name="confirmaExclusao" />
 								<h:commandButton value="Cancelar"
 									class="modal-action modal-close waves-effect waves-red btn-flat"
-									type="button" />
+									type="button" name="cancelarExclusao" />
 							</div>
 						</div>
 					</h:form>
+
+
 					<!-- Fim estrutura modal -->
-					<h:form class="formValidate" id="formValidate" prependId="false">
+					<h:form id="formValidate" prependId="false">
+
 						<div class="row">
 							<div class="input-field col s12">
-								<h:inputText value="#{usuarioBean.usuario.nome}" id="campo"
-									class="validate">
-									<f:validator validatorId="#{validador}" />
-								</h:inputText>
-								<h:outputLabel class="active" value="Nome" for="campo" />
-								<h:message for="campo" class="red-text" />
+								<h:inputText value="#{usuarioBean.usuario.nome}" id="nome"
+									name="nome" aria-required="true" />
+								<h:outputLabel class="active" value="Nome" for="nome" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12">
 								<h:inputText value="#{usuarioBean.usuario.usuario}" id="usuario"
-									class="validate" data-error=".errorTxt2" />
+									name="usuario" aria-required="true" />
 								<h:outputLabel class="active" value="Usuário" for="usuario" />
-								<h:message class="red-text" for="usuario" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12">
 								<h:inputSecret value="#{usuarioBean.usuario.senha}" id="senha"
-									class="validate" data-error=".errorTxt3" redisplay="true" />
+									name="senha" redisplay="true" aria-required="true" />
 								<h:outputLabel class="active" value="Senha" for="senha" />
-								<h:message for="senha" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12">
-								<h:inputSecret id="confirmaSenha" class="validate"
-									data-error=".errorTxt4" value="#{usuarioBean.usuario.senha}"
-									redisplay="true" />
+								<h:inputSecret id="confirmaSenha" name="confirmaSenha"
+									value="#{usuarioBean.usuario.senha}" redisplay="true"
+									aria-required="true" />
 								<h:outputLabel class="active" value="Confirmar Senha"
 									for="confirmaSenha" />
-								<div class="errorTxt4"></div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12">
 								<h:selectBooleanCheckbox class="filled-in" id="ativo"
-									value="#{usuarioBean.usuario.ativo}" />
+									name="ativo" value="#{usuarioBean.usuario.ativo}" />
 								<h:outputLabel class="active" value="Ativo" for="ativo" />
 							</div>
 						</div>
 						<div class="row">
+
 							<h:commandButton
-								class="btn waves-effect waves-light right submit"
-								action="#{usuarioBean.validaUsuario()}" value="Salvar"
-								id="salvarUsuario">
-								<f:ajax event="action" execute="@form" immediate="false" />
+								class="btn waves-effect waves-light right submit" value="Salvar"
+								id="salvarUsuario" action="#{usuarioBean.validaUsuario()}">
+
 							</h:commandButton>
 							<h:commandButton
 								class="btn waves-effect waves-light right submit"
 								value="excluir" id="apresenta" type="button"
 								rendered="#{usuarioBean.usuario.idUsuario!=0}">
-							</h:commandButton>
 
-							<!-- <h:button
-								class="btn waves-effect waves-light right submit modal-trigger"
-								id="apresenta" rendered="#{usuarioBean.usuario.idUsuario!=0}"
-								type="button" value="Excluir" /> -->
-							<h:commandButton
-								class="btn waves-effect waves-light right submit"
+							</h:commandButton>
+							<h:commandLink class="btn waves-effect waves-light right submit"
 								action="#{usuarioBean.direcionaPagina('pesquisa_usuario')}"
 								value="Cancelar">
-							</h:commandButton>
+							</h:commandLink>
 						</div>
 					</h:form>
 				</div>
@@ -108,23 +101,92 @@
 	</div>
 	</main>
 	<ui:include src="/fundo.xhtml" />
-	<h:outputScript library="js/validation" name="jquery.validate.js" />
 
-	<h:outputScript>
-
-	$(function() {
+	<h:outputScript target="form">
+$(function() {
 	
 	$('#apresenta').click(function() {
 		$('#modal1').openModal();
 	});
 	
-	});
-	
-	$(document).ready(function(){
+});
+
+$(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal-trigger').leanModal();
-  	});
-	</h:outputScript>
+});
 
+$(document).ready(function(){
+<!-- Validação do formulário -->
+$.validator.setDefaults({
+	errorClass: 'invalid',
+    validClass: "valid",
+    errorPlacement: function (error, element) {
+		$(element)
+		.closest("form")
+		.find("label[for='" + element.attr("id") + "']")
+		.attr('data-error', error.text());
+	},
+	submitHandler: function() {
+		console.log("submitted!");
+		document.getElementById("formValidate").submit();
+	}
+});
+$("#formValidate").validate({	
+	rules: {
+		nome: {
+			required: true,
+			minlength: 4
+		},
+		usuario: {
+			required: true,
+			minlength: 4
+		},
+		senha: {
+			required: true,
+			minlength: 5,
+		},
+		confirmaSenha: {
+			equalTo: "#senha",
+			required: true
+		}
+	},
+	messages: {
+		nome: {
+			required: "Campo obrigatório",
+			minlength: "Mínimo 4 caracteres"
+		},
+		usuario: {
+			required: "Campo obrigatório",
+			minlength: "Minímo 4 caracteres"
+		},
+		senha: {
+			required: "Campo obrigatório",
+			minlength: "A senha deve ter mais do que 5 caracteres"
+		},
+		confirmaSenha: {
+			required: "Campo obrigatório",
+			minlength: "A senha deve ter mais do que 5 caracteres",
+			equalTo: "As senhas não coincidem"			
+		}				
+	},
+});
+
+});
+</h:outputScript>
+	<h:outputStylesheet>
+label {
+    width: 100%;
+}
+.input-field label {
+    font-size:
+     0.8rem;
+    -webkit-transform: translateY(-140%);
+    -moz-transform: translateY(-140%);
+    -ms-transform: translateY(-140%);
+    -o-transform: translateY(-140%);
+    transform: translateY(-140%);
+}
+</h:outputStylesheet>
 </h:body>
 </html>
