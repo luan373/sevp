@@ -14,10 +14,7 @@ import br.com.sevp.model.entity.Usuario;
 @ManagedBean(name = "usuarioBean")
 @SessionScoped
 public class UsuarioBean {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5711950941720495714L;
+	
 	Usuario usuario = null;
 	UsuarioBll usuarioBll = null;
 
@@ -67,10 +64,6 @@ public class UsuarioBean {
 		mataSessao();
 
 		return local;
-	}
-
-	private void menssagemSucesso() {
-		
 	}
 
 	private void mataSessao() {

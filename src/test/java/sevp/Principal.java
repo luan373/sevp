@@ -4,6 +4,11 @@ import br.com.sevp.model.dao.AbstractDao;
 
 public class Principal extends AbstractDao {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7152692732855008783L;
+
 	public Principal() {
 		super();
 	}
