@@ -47,12 +47,8 @@
 			<version>4.1</version>
 		</dependency>
 
-		<!-- SQL SERVER -->
-		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>sqljdbc4</artifactId>
-			<version>4.0</version>
-		</dependency>
+		<!-- SQL SERVER <dependency> <groupId>com.microsoft.sqlserver</groupId> 
+			<artifactId>sqljdbc4</artifactId> <version>4.0</version> </dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
