@@ -4,11 +4,11 @@
 <hibernate-configuration>
 	<session-factory name="">
 		<property name="hibernate.connection.autocommit">true</property>
-		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-		<property name="hibernate.connection.password">123456</property>
-		<property name="hibernate.connection.url">jdbc:sqlserver://10.5.1.224;databaseName=SEVP</property>
-		<property name="hibernate.connection.username">userSEVP</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<property name="hibernate.connection.password">9903</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/SEVP</property>
+		<property name="hibernate.connection.username">postgres</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="hibernate.search.autoregister_listeners">false</property>
 		<property name="hibernate.validator.apply_to_ddl">false</property>
 		<!-- mapping -->
