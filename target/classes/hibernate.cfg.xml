@@ -6,9 +6,9 @@
 		<property name="hibernate.connection.autocommit">true</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<!-- SEVP -->
-		<property name="hibernate.connection.password">Ue3PtqZDLkaV</property>
+		<property name="hibernate.connection.password">Ybvml5ItmZUu</property>
 		<property name="hibernate.connection.url">jdbc:postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL_DB_PORT</property>
-		<property name="hibernate.connection.username">adminebsszab</property>
+		<property name="hibernate.connection.username">adminvzmg1gu</property>
 
 		<!-- SEVP -->
 		<!-- Local <property name="hibernate.connection.password">9903</property> 
