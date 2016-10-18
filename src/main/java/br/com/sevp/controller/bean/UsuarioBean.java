@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 
 import br.com.sevp.controller.bll.UsuarioBll;
 import br.com.sevp.model.entity.Usuario;
 
 @ManagedBean(name = "usuarioBean")
-@SessionScoped
+@ViewScoped
 public class UsuarioBean {
-	
+
 	Usuario usuario = null;
 	UsuarioBll usuarioBll = null;
 

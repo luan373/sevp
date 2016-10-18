@@ -1,94 +1,41 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-<ui:include src="/head.xhtml" />
+<h:head>
+	<title>JSF 2.0 Hello World</title>
+	<ui:include src="/templates/ScriptsJs.xhtml" />
+</h:head>
 <h:body>
-	<ui:include src="/topo.xhtml" />
-	<main>
-	<div class="container">
+	<h2>JSF 2.0 Hello World Example - hello.xhtml</h2>
+	<h:form>
 
-		<h5>Jquery-validation with materialize</h5>
 
-		<form id="form" class="col s12" novalidate="novalidate">
-			<div class="row">
-				<div class="input-field col s12">
-					<input id="field1" name="field1" type="text" required=""
-						aria-required="true" /> <label for="field1">Standard
-						Field 1</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<input id="field2" name="field2" type="text" required=""
-						aria-required="true" /> <label for="field2">Standard
-						Field 2</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<input id="dateField" name="dateField" type="text"
-						placeholder="dd/mm/yyyy" required="" aria-required="true" /> <label
-						for="dateField">Date example</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<input id="email" name="email" type="email" required=""
-						aria-required="true" /> <label for="email">Email example</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<button class="btn waves-effect waves-light" type="submit"
-						name="action">Submit</button>
-				</div>
-			</div>
-		</form>
-	</div>
-	</main>
-	<ui:include src="/fundo.xhtml" />
-	<h:outputScript>
-	$.validator.setDefaults({
-    errorClass: 'invalid',
-    validClass: "valid",
-    errorPlacement: function (error, element) {
-        $(element)
-            .closest("form")
-            .find("label[for='" + element.attr("id") + "']")
-            .attr('data-error', error.text());
-    },
-    submitHandler: function (form) {
-        console.log('form ok');
-    }
-});
 
-$("#form").validate({
-    rules: {
-        dateField: {
-            date: true,
-            required: true,
-        }
-    },
-    messages: {
-				dateField: {
-					required: "Please enter a username",
-					minlength: "Your username must consist of at least 2 characters"
-				},
-				password: {
-					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long"
-				},				
-			}
-});
-      
-	</h:outputScript>
-	<h:outputStylesheet>
-	 label {
-    width: 100%;
-	}	
-	</h:outputStylesheet>
+
+		<h:inputText value="#{testeBean.aviso}"></h:inputText>
+		<hr />
+		<h:commandButton value="Submit" action="#{testeBean.submit()}"></h:commandButton>
+
+
+
+		<hr />
+		<h:commandButton value="Executa" action="#{testeBean.executa()}"></h:commandButton>
+
+		<hr />
+		<h:commandButton value="Alert" action="#{testeBean.alert()}"></h:commandButton>
+
+	</h:form>
+
+	<script type="text/javascript">
+	function oi() {
+    console.log("oi");
+	}
+	</script>
 </h:body>
 </html>
