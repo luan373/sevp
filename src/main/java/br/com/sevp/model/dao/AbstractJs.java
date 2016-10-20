@@ -2,7 +2,7 @@ package br.com.sevp.model.dao;
 
 import javax.faces.bean.ManagedProperty;
 
-import br.com.sevp.controller.bean.ScriptsJsBean;
+import br.com.sevp.util.ScriptsJsBean;
 
 public abstract class AbstractJs {
 	

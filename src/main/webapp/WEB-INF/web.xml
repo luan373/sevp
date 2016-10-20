@@ -23,7 +23,7 @@
 		<param-value>0</param-value> <!-- cache desligado -->
 	</context-param>
 
-	
+
 	<!-- <session-config> <session-timeout>30</session-timeout> </session-config> -->
 
 	<!-- Server side automatically handled errors -->
@@ -42,5 +42,9 @@
 	<error-page>
 		<error-code>500</error-code>
 		<location>/errorPages/page-500.xhtml?faces-redirect=true</location>
+	</error-page>
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/errorPages/expiredSession.xhtml?faces-redirect=true</location>
 	</error-page>
 </web-app>

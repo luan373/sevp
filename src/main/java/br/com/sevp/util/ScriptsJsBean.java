@@ -1,4 +1,4 @@
-package br.com.sevp.controller.bean;
+package br.com.sevp.util;
 
 import java.io.Serializable;
 

@@ -1,24 +1,29 @@
 package br.com.sevp.controller.bean;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 
 import br.com.sevp.controller.bll.UsuarioBll;
 import br.com.sevp.model.entity.Usuario;
 
-@ManagedBean(name = "usuarioBean")
+@ManagedBean(name = "usuarioManterBean")
 @ViewScoped
-public class UsuarioBean {
+public class UsuarioManterBean implements Serializable {
 
 	Usuario usuario = null;
 	UsuarioBll usuarioBll = null;
 
-	List<Usuario> lista = null;
+	public UsuarioManterBean() {
+		System.out.println("Construtor");
+		if (this.usuario == null) {
+			this.usuario = new Usuario();
+		}
+		this.usuarioBll = new UsuarioBll();
+		System.out.println(usuario);
+	}
 
 	public String validaUsuario() {
 		if (usuario.getIdUsuario() == 0) {
@@ -27,30 +32,14 @@ public class UsuarioBean {
 			this.usuarioBll.alterar(usuario);
 		}
 
-		mataSessao();
 		return "/index";
 	}
 
 	public String excluiUsuario() {
 		this.usuarioBll.excluir(usuario);
 		System.out.println("excluiuuuuu");
-		mataSessao();
 
 		return "/index";
-	}
-
-	public void pesquisaUsuario() {
-		lista = usuarioBll.pesquisar(usuario);
-	}
-
-	public UsuarioBean() {
-		System.out.println("Construtor");
-		if (this.usuario == null) {
-			this.usuario = new Usuario();
-		}
-		this.usuarioBll = new UsuarioBll();
-		this.lista = new ArrayList<Usuario>();
-		System.out.println(usuario);
 	}
 
 	public String addTituloPagina() {
@@ -61,13 +50,7 @@ public class UsuarioBean {
 	}
 
 	public String direcionaPagina(String local) throws IOException {
-		mataSessao();
-
 		return local;
-	}
-
-	private void mataSessao() {
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioBean", null);
 	}
 
 	public Usuario getUsuario() {
@@ -78,11 +61,4 @@ public class UsuarioBean {
 		this.usuario = usuario;
 	}
 
-	public List<Usuario> getLista() {
-		return lista;
-	}
-
-	public void setLista(List<Usuario> lista) {
-		this.lista = lista;
-	}
 }
