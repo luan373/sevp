@@ -16,34 +16,37 @@
 					<h:form id="formPesquisaUsuario">
 						<div class="row">
 							<div class="input-field col s6">
-								<h:inputText value="#{usuarioPesquisaBean.usuario.nome}" id="nome"
-									class="validate" />
+								<h:inputText value="#{usuarioPesquisaBean.usuario.nome}"
+									id="nome" class="validate" />
 								<h:outputLabel class="active" value="Nome" for="nome" />
 								<h:message class="red-text" for="nome" />
 							</div>
 							<div class="input-field col s6">
-								<h:inputText value="#{usuarioPesquisaBean.usuario.usuario}" id="usuario"
-									class="validate" />
+								<h:inputText value="#{usuarioPesquisaBean.usuario.usuario}"
+									id="usuario" class="validate" />
 								<h:outputLabel class="active" value="Usuario" for="usuario" />
 								<h:message class="red-text" for="usuario" />
 							</div>
 							<div class="input-field col s12">
 								<h:commandButton
 									class="btn waves-effect waves-light right submit"
-									action="#{usuarioPesquisaBean.pesquisaUsuario()}" value="Pesquisar">
+									action="#{usuarioPesquisaBean.pesquisaUsuario()}"
+									value="Pesquisar">
 									<!--  $('.tablesorter').tablesorter(); -->
 									<!-- <f:ajax event="action" execute="@form" render=":tabelaUsuario" /> -->
 								</h:commandButton>
 							</div>
 						</div>
 					</h:form>
-					
-					<h:outputText value="Nenhum resultado encontrado." rendered="#{empty usuarioPesquisaBean.lista}" />
-					
-					<div id="resultado" >
+
+					<h:outputText value="Nenhum resultado encontrado."
+						rendered="#{empty usuarioPesquisaBean.lista}" />
+
+					<div id="resultado">
 						<h:form id="tabelaUsuario">
 							<h:dataTable id="dataTableUsuario" class="tablesorter striped"
-								value="#{usuarioPesquisaBean.lista}" var="usuario" rendered="#{not empty usuarioPesquisaBean.lista}">
+								value="#{usuarioPesquisaBean.lista}" var="usuario"
+								rendered="#{not empty usuarioPesquisaBean.lista}">
 								<h:column>
 									<f:facet name="header">
 										<h:outputText value="ID Usuario" />
@@ -72,8 +75,13 @@
 									<f:facet name="header">
 										<h:outputText value="Ações" />
 									</f:facet>
-									<h:commandButton action="formulario_usuario" value="Alterar">
-										<f:setPropertyActionListener value="#{usuario}" target="#{usuarioManterBean.usuario}" />
+									<h:commandButton
+										action="#{usuarioManterBean.editar(usuario.idUsuario)}"
+										value="Alterar">
+
+										<!-- 	<f:setPropertyActionListener value="#{usuario}"
+											target="#{usuarioManterBean.usuario}" /> -->
+
 									</h:commandButton>
 								</h:column>
 							</h:dataTable>
@@ -88,8 +96,8 @@
 	<!--  Script de pesquisa -->
 	<!-- <h:outputScript library="js/plugins/tablesorter"
 		name="jquery.tablesorter.min.js" /> -->
-	<h:outputScript> 
-	<!-- $(function() {
+	<h:outputScript>
+		<!-- $(function() {
     	// Esconde a tabela quando a página é carregada    
     	//$("#tabelaUsuario").hide();    
     	window.onload = function() {        
@@ -99,7 +107,7 @@
     function pesquisarLotes() {
 		$("#tabelaUsuario").show();	
 	} -->
-     
+
 	</h:outputScript>
 </h:body>
 </html>

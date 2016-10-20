@@ -7,11 +7,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import br.com.sevp.controller.bll.UsuarioBll;
+import br.com.sevp.model.dao.AbstractNavigation;
 import br.com.sevp.model.entity.Usuario;
 
 @ManagedBean(name = "usuarioManterBean")
 @ViewScoped
-public class UsuarioManterBean implements Serializable {
+public class UsuarioManterBean extends AbstractNavigation implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4347964920110318709L;
 
 	Usuario usuario = null;
 	UsuarioBll usuarioBll = null;
@@ -23,6 +29,7 @@ public class UsuarioManterBean implements Serializable {
 		}
 		this.usuarioBll = new UsuarioBll();
 		System.out.println(usuario);
+
 	}
 
 	public String validaUsuario() {
@@ -49,6 +56,10 @@ public class UsuarioManterBean implements Serializable {
 		return "Alterar Usuário";
 	}
 
+	public String editar(long idUsuario) {
+		return this.navegar("formulario_usuario.xhtml?faces-redirect=trueidUsuario=" + idUsuario);
+	}
+
 	public String direcionaPagina(String local) throws IOException {
 		return local;
 	}
@@ -60,5 +71,4 @@ public class UsuarioManterBean implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
 }

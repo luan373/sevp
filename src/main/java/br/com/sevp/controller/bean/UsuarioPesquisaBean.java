@@ -16,6 +16,11 @@ import br.com.sevp.model.entity.Usuario;
 @ViewScoped
 public class UsuarioPesquisaBean implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7959138682849706510L;
+	
 	Usuario usuario = null;
 	UsuarioBll usuarioBll = null;
 
