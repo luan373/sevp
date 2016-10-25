@@ -29,7 +29,6 @@ public class UsuarioDao extends AbstractDao implements Serializable {
 
 		Usuario usuario = (Usuario) criteria.uniqueResult();
 		return usuario;
-
 	}
 
 	@SuppressWarnings("unchecked")

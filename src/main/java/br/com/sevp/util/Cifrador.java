@@ -1,7 +1,6 @@
 package br.com.sevp.util;
 
 import java.security.spec.KeySpec;
-import java.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -21,8 +20,10 @@ public class Cifrador {
 	private static final int KEY_LENGTH = 256;
 	private Cipher ecipher;
 	private Cipher dcipher;
-
-	Cifrador(String passPhrase) throws Exception {
+	
+	
+	
+	public Cifrador(String passPhrase) throws Exception {
 		SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
 		KeySpec spec = new PBEKeySpec(passPhrase.toCharArray(), SALT, ITERATION_COUNT, KEY_LENGTH);
 		SecretKey tmp = factory.generateSecret(spec);
@@ -54,5 +55,18 @@ public class Cifrador {
 
 	public byte[] decrypt(byte[] encrypt) throws Exception {
 		return dcipher.doFinal(encrypt);
+	}
+	
+	public static void main(String[] args) throws Exception {
+		Cifrador cifrador = new Cifrador("ola");
+		
+		
+		String algo = "3";
+		String algo1 = "ARijEumRikveQUlOCnSXoA==";
+		//cifrador.encripta(algo);
+		System.out.println(algo1);
+		
+		String aff = cifrador.descripta(algo1);
+		System.out.println(aff); 
 	}
 }

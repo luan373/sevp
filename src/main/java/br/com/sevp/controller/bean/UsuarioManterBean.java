@@ -3,15 +3,16 @@ package br.com.sevp.controller.bean;
 import java.io.IOException;
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 import br.com.sevp.controller.bll.UsuarioBll;
 import br.com.sevp.model.dao.AbstractNavigation;
 import br.com.sevp.model.entity.Usuario;
 
 @ManagedBean(name = "usuarioManterBean")
-@ViewScoped
+@RequestScoped
 public class UsuarioManterBean extends AbstractNavigation implements Serializable {
 
 	/**
@@ -19,17 +20,26 @@ public class UsuarioManterBean extends AbstractNavigation implements Serializabl
 	 */
 	private static final long serialVersionUID = -4347964920110318709L;
 
+	@PostConstruct
+	public void init() {
+
+	}
+
 	Usuario usuario = null;
 	UsuarioBll usuarioBll = null;
 
-	public UsuarioManterBean() {
-		System.out.println("Construtor");
+	public UsuarioManterBean() throws Exception {
 		if (this.usuario == null) {
 			this.usuario = new Usuario();
 		}
 		this.usuarioBll = new UsuarioBll();
-		System.out.println(usuario);
 
+		String idEncodado = this.getParam("idUsuario");
+
+		if (idEncodado != null) {
+			long idUsuario = Long.parseLong(idEncodado);
+			this.usuario = this.usuarioBll.recuperar(idUsuario);
+		}
 	}
 
 	public String validaUsuario() {
@@ -44,8 +54,6 @@ public class UsuarioManterBean extends AbstractNavigation implements Serializabl
 
 	public String excluiUsuario() {
 		this.usuarioBll.excluir(usuario);
-		System.out.println("excluiuuuuu");
-
 		return "/index";
 	}
 
@@ -56,8 +64,9 @@ public class UsuarioManterBean extends AbstractNavigation implements Serializabl
 		return "Alterar Usuário";
 	}
 
-	public String editar(long idUsuario) {
-		return this.navegar("formulario_usuario.xhtml?faces-redirect=trueidUsuario=" + idUsuario);
+	public Usuario recuperaUsuario(Long idUsuario) {
+		return usuario;
+
 	}
 
 	public String direcionaPagina(String local) throws IOException {

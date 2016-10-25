@@ -76,12 +76,8 @@
 										<h:outputText value="Ações" />
 									</f:facet>
 									<h:commandButton
-										action="#{usuarioManterBean.editar(usuario.idUsuario)}"
-										value="Alterar">
-
-										<!-- 	<f:setPropertyActionListener value="#{usuario}"
-											target="#{usuarioManterBean.usuario}" /> -->
-
+										action="#{usuarioPesquisaBean.editar(usuario.idUsuario)}"
+										value="Alterar">										
 									</h:commandButton>
 								</h:column>
 							</h:dataTable>

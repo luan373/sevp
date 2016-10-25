@@ -29,6 +29,10 @@ public class UsuarioBll implements Serializable {
 		this.usuarioDao.excluir(usuario);
 	}
 
+	public Usuario recuperar(long idUsuario) {
+		return this.usuarioDao.recuperar(idUsuario);
+	}
+
 	public List<Usuario> pesquisar(Usuario usuario) {
 
 		List<Usuario> resultado = usuarioDao.pesquisar(usuario);

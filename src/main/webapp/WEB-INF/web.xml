@@ -27,7 +27,6 @@
 		<param-value>0</param-value> <!-- cache desligado -->
 	</context-param>
 
-
 	<!-- <session-config> <session-timeout>30</session-timeout> </session-config> -->
 
 	<!-- Server side automatically handled errors -->
