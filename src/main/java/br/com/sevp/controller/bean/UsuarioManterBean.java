@@ -3,27 +3,22 @@ package br.com.sevp.controller.bean;
 import java.io.IOException;
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import br.com.sevp.controller.bll.UsuarioBll;
+import br.com.sevp.excpetion.SevpException;
 import br.com.sevp.model.dao.AbstractNavigation;
 import br.com.sevp.model.entity.Usuario;
 
 @ManagedBean(name = "usuarioManterBean")
-@RequestScoped
+@ViewScoped
 public class UsuarioManterBean extends AbstractNavigation implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4347964920110318709L;
-
-	@PostConstruct
-	public void init() {
-
-	}
 
 	Usuario usuario = null;
 	UsuarioBll usuarioBll = null;
@@ -42,19 +37,28 @@ public class UsuarioManterBean extends AbstractNavigation implements Serializabl
 		}
 	}
 
-	public String validaUsuario() {
-		if (usuario.getIdUsuario() == 0) {
-			this.usuarioBll.inserir(usuario);
-		} else {
-			this.usuarioBll.alterar(usuario);
-		}
+	public void validaUsuario() {
 
-		return "/index";
+		try {
+			if (usuario.getIdUsuario() == 0) {
+				this.usuarioBll.inserir(usuario);
+				getScriptsJsBean().executaScript("salvar();");
+				// js();
+			} else {
+				this.usuarioBll.alterar(usuario);
+				getScriptsJsBean().executaScript("salvar();");
+			}
+		} catch (SevpException e) {
+			// TODO Auto-generated catch block
+			getScriptsJsBean().executaScript("MessagemErroToast('" + e.getMessage() + "');");
+		} catch (Exception e) {
+			getScriptsJsBean().executaScript("MessagemErroToastDefault('" + e.getMessage() + "');");
+		}
 	}
 
-	public String excluiUsuario() {
+	public void excluiUsuario() {
 		this.usuarioBll.excluir(usuario);
-		return "/index";
+		getScriptsJsBean().executaScript("excluir();");
 	}
 
 	public String addTituloPagina() {

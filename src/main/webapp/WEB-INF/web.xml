@@ -17,37 +17,42 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-
+	<!-- Tempo de sessão -->
 	<session-config>
-		<session-timeout>30</session-timeout>
+		<session-timeout>5</session-timeout>
 	</session-config>
+	<!-- desliga o cache, útil quando está em fase de desenvolvimento -->
+	<!-- <context-param> <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name> 
+		<param-value>0</param-value> cache desligado </context-param> -->
 
 	<context-param>
-		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
-		<param-value>0</param-value> <!-- cache desligado -->
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
 	</context-param>
 
-	<!-- <session-config> <session-timeout>30</session-timeout> </session-config> -->
+	<!-- Listener e Filters -->
+	<listener>
+		<listener-class>br.com.sevp.controller.bean.MySessionListener</listener-class>
+	</listener>
+	<filter>
+		<filter-name>SessionTimeoutFilter</filter-name>
+		<filter-class>br.com.sevp.controller.bean.SessionTimeoutFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SessionTimeoutFilter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
 
-	<!-- Server side automatically handled errors -->
-	<!-- <error-page> -->
-	<!-- <error-code>403</error-code> -->
-	<!-- <location>/errorPages/error403.xhtml</location> -->
-	<!-- </error-page> -->
+	<!-- Direcionamento de página em caso de erros -->
 	<error-page>
 		<error-code>404</error-code>
 		<location>/errorPages/page-404.xhtml?faces-redirect=true</location>
 	</error-page>
-	<!-- <error-page> -->
-	<!-- <error-code>503</error-code> -->
-	<!-- <location>/errorPages/error503.xhtml</location> -->
-	<!-- </error-page> -->
 	<error-page>
 		<error-code>500</error-code>
 		<location>/errorPages/page-500.xhtml?faces-redirect=true</location>
 	</error-page>
-	<error-page>
-		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
-		<location>/errorPages/expiredSession.xhtml?faces-redirect=true</location>
-	</error-page>
+	<!-- <error-page> <exception-type>javax.faces.application.ViewExpiredException</exception-type> 
+		<location>/errorPages/expiredSession.xhtml?faces-redirect=true</location> 
+		</error-page> -->
 </web-app>

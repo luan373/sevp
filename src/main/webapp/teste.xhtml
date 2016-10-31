@@ -29,7 +29,10 @@
 
 		<hr />
 		<h:commandButton value="Alert" action="#{testeBean.alert()}"></h:commandButton>
-
+		
+		<h:commandButton value="js">
+			<f:ajax event="click" listener="#{myBean.js()}" />
+		</h:commandButton>
 	</h:form>
 
 	<script type="text/javascript">

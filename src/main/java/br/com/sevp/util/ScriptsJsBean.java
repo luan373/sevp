@@ -36,4 +36,8 @@ public class ScriptsJsBean implements Serializable {
 		script = "";
 	}
 
+	public void executaScript(String script) {
+		this.script = "$(document).ready(function(){" + script + "});";
+	}
+
 }

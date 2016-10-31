@@ -48,9 +48,9 @@ public class UsuarioDao extends AbstractDao implements Serializable {
 		if (usuario.getUsuario() != null && !usuario.getUsuario().equals("")) {
 			criteria.add(Restrictions.like("usuario", usuario.getUsuario(), MatchMode.ANYWHERE));
 		}
-		
+
 		List<Usuario> resultado = criteria.list();
-		
+
 		return resultado;
 	}
 
@@ -93,6 +93,17 @@ public class UsuarioDao extends AbstractDao implements Serializable {
 			transaction.rollback();
 			e.printStackTrace();
 		}
+	}
+
+	public boolean validaUsuario(String usuario) {
+		Criteria criteria = this.getSession().createCriteria(Usuario.class);
+		criteria.add(Restrictions.eq("usuario", usuario));
+
+		if (criteria.uniqueResult() == null) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

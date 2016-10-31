@@ -5,12 +5,14 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Map;
 
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.context.PartialResponseWriter;
 
 import br.com.sevp.util.Cifrador;
 import br.com.sevp.util.UtilCriptografia;
 
-public abstract class AbstractNavigation {
+public abstract class AbstractNavigation extends AbstractJs {
 
 	protected Cifrador cifrador = null;
 
@@ -70,5 +72,27 @@ public abstract class AbstractNavigation {
 		}
 
 		return projectParam;
+	}
+
+	public void js() {
+		System.out.println("called");
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		ExternalContext extContext = ctx.getExternalContext();
+
+		try {
+			extContext.setResponseContentType("text/xml");
+			extContext.addResponseHeader("Cache - Control ", "no - cache");
+			PartialResponseWriter writer = ctx.getPartialViewContext().getPartialResponseWriter();
+			writer.startDocument();
+			writer.startEval();
+			writer.write("$(document).ready(function(){oi();});");
+			writer.endEval();
+			writer.endDocument();
+			writer.flush();
+			ctx.responseComplete();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
 	}
 }

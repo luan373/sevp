@@ -5,6 +5,15 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:include src="/head.xhtml" />
+<script type="text/javascript">
+	function salvar() {
+		$('#modal2').openModal();			
+	}
+	function excluir() {
+		$('#modal3').openModal();			
+	}
+	</script>
+<ui:include src="/templates/ScriptsJs.xhtml" />
 <h:body>
 	<!--  -->
 	<ui:include src="/topo.xhtml" />
@@ -33,6 +42,34 @@
 									type="button" name="cancelarExclusao" />
 							</div>
 						</div>
+						<!-- Alerta de sucesso -->
+						<div id="modal2" class="modal">
+							<div class="modal-content">
+								<h4>Sucesso</h4>
+								<p>Registro salvo com sucesso.</p>
+							</div>
+
+							<div class="modal-footer">
+								<h:commandLink value="OK"
+									class="modal-action modal-close waves-effect waves-green btn-flat"
+									action="pesquisa_usuario?faces-redirect=true" type="submit"
+									name="sucesso" />
+							</div>
+						</div>
+						<!-- Exclusão de sucesso -->
+						<div id="modal3" class="modal">
+							<div class="modal-content">
+								<h4>Sucesso</h4>
+								<p>Registro excluído com sucesso.</p>
+							</div>
+
+							<div class="modal-footer">
+								<h:commandLink value="OK"
+									class="modal-action modal-close waves-effect waves-green btn-flat"
+									action="pesquisa_usuario?faces-redirect=true" type="submit"
+									name="sucesso" />
+							</div>
+						</div>
 					</h:form>
 
 
@@ -48,15 +85,16 @@
 						</div>
 						<div class="row">
 							<div class="input-field col s12">
-								<h:inputText value="#{usuarioManterBean.usuario.usuario}" id="usuario"
-									name="usuario" aria-required="true" />
+								<h:inputText value="#{usuarioManterBean.usuario.usuario}"
+									id="usuario" name="usuario" aria-required="true"
+									disabled="#{usuarioManterBean.usuario.idUsuario!=0}" />
 								<h:outputLabel class="active" value="Usuário" for="usuario" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12">
-								<h:inputSecret value="#{usuarioManterBean.usuario.senha}" id="senha"
-									name="senha" redisplay="true" aria-required="true" />
+								<h:inputSecret value="#{usuarioManterBean.usuario.senha}"
+									id="senha" name="senha" redisplay="true" aria-required="true" />
 								<h:outputLabel class="active" value="Senha" for="senha" />
 							</div>
 						</div>
@@ -111,6 +149,7 @@ $(function() {
 	
 });
 
+	
 $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal-trigger').leanModal();
@@ -188,5 +227,6 @@ label {
     transform: translateY(-140%);
 }
 </h:outputStylesheet>
+
 </h:body>
 </html>
