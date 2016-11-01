@@ -6,6 +6,7 @@
 	<display-name>SEVP</display-name>
 	<welcome-file-list>
 		<welcome-file>login.xhtml</welcome-file>
+
 	</welcome-file-list>
 
 	<servlet>
@@ -17,42 +18,50 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-	<!-- Tempo de sessão -->
-	<session-config>
-		<session-timeout>5</session-timeout>
-	</session-config>
-	<!-- desliga o cache, útil quando está em fase de desenvolvimento -->
-	<!-- <context-param> <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name> 
-		<param-value>0</param-value> cache desligado </context-param> -->
+	<!-- Tempo de sessão <session-config> <session-timeout>5</session-timeout> 
+		</session-config> -->
 
 	<context-param>
+		<description>Seta o projeto para desenvolvimento, teste unitário, teste de sistema ou produção, que no caso são: "Development", "UnitTest", "SystemTest" ou "Production".
+	</description>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
 	</context-param>
 
-	<!-- Listener e Filters -->
-	<listener>
-		<listener-class>br.com.sevp.controller.bean.MySessionListener</listener-class>
-	</listener>
-	<filter>
-		<filter-name>SessionTimeoutFilter</filter-name>
-		<filter-class>br.com.sevp.controller.bean.SessionTimeoutFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>SessionTimeoutFilter</filter-name>
-		<servlet-name>Faces Servlet</servlet-name>
-	</filter-mapping>
-
 	<!-- Direcionamento de página em caso de erros -->
 	<error-page>
 		<error-code>404</error-code>
-		<location>/errorPages/page-404.xhtml?faces-redirect=true</location>
+		<location>/errorPages/page-404.xhtml</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/errorPages/page-500.xhtml?faces-redirect=true</location>
+		<location>/errorPages/page-500.xhtml</location>
 	</error-page>
 	<!-- <error-page> <exception-type>javax.faces.application.ViewExpiredException</exception-type> 
 		<location>/errorPages/expiredSession.xhtml?faces-redirect=true</location> 
 		</error-page> -->
+
+	<!-- Segurança, login e configurações -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Visível para quem consegue logar como USUÁRIO.</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>user</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login.xhtml</form-login-page>
+			<form-error-page>/login.xhtml</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<security-role>
+		<role-name>user</role-name>
+	</security-role>
+
 </web-app>

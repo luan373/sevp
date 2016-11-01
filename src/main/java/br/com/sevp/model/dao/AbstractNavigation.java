@@ -8,7 +8,9 @@ import java.util.Map;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.PartialResponseWriter;
+import javax.servlet.http.HttpSession;
 
+import br.com.sevp.controller.bean.LoginBean;
 import br.com.sevp.util.Cifrador;
 import br.com.sevp.util.UtilCriptografia;
 
@@ -17,7 +19,14 @@ public abstract class AbstractNavigation extends AbstractJs {
 	protected Cifrador cifrador = null;
 
 	public AbstractNavigation() {
+		// HttpSession session = (HttpSession)
+		// FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 
+		// LoginBean loginBean = (LoginBean) session.getAttribute("loginBean");
+		/*
+		 * if (session.getAttribute("loginBean") == null ) { // nao fez login...
+		 * redireciona this.navegar("/errorPages/expiredSession.xhtml"); }
+		 */
 	}
 
 	protected String recuperarQueryString(String parametro) {
