@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.sevp.excpetion.SevpException;
 import br.com.sevp.model.dao.UsuarioDao;
+import br.com.sevp.model.dao.UsuarioRolesDao;
 import br.com.sevp.model.entity.Usuario;
 
 public class UsuarioBll implements Serializable {
@@ -18,7 +19,6 @@ public class UsuarioBll implements Serializable {
 		this.usuarioDao = new UsuarioDao();
 	}
 
-	@SuppressWarnings("null")
 	public void inserir(Usuario usuario) throws SevpException {
 		// verifica se ja existe um loco com esse usuario, caso tenha
 		if (validaUsuario(usuario.getUsuario()) == false) {
@@ -26,6 +26,11 @@ public class UsuarioBll implements Serializable {
 		}
 
 		this.usuarioDao.inserir(usuario);
+
+		// insere sua permisão de usuário
+		UsuarioRolesDao usuarioRolesDao = new UsuarioRolesDao();
+		usuarioRolesDao.inserir(usuario.getUsuario());
+
 	}
 
 	@SuppressWarnings("null")
@@ -33,8 +38,6 @@ public class UsuarioBll implements Serializable {
 		String usuarioValidacao = usuario.getUsuario();
 		usuario = null;
 		usuario.setUsuario(usuarioValidacao);
-		List<Usuario> usuarios = this.usuarioDao.pesquisar(usuario);
-
 		this.usuarioDao.alterar(usuario);
 	}
 

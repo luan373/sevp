@@ -18,5 +18,6 @@
 		<mapping class="br.com.sevp.model.entity.Pedido" />
 		<mapping class="br.com.sevp.model.entity.Produto" />
 		<mapping class="br.com.sevp.model.entity.TipoProduto" />
+		<mapping class="br.com.sevp.model.entity.UsuarioRoles" />
 	</session-factory>
 </hibernate-configuration>

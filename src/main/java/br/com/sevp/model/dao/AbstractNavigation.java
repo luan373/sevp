@@ -8,9 +8,7 @@ import java.util.Map;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.PartialResponseWriter;
-import javax.servlet.http.HttpSession;
 
-import br.com.sevp.controller.bean.LoginBean;
 import br.com.sevp.util.Cifrador;
 import br.com.sevp.util.UtilCriptografia;
 

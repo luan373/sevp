@@ -3,22 +3,16 @@
 
 <hibernate-reverse-engineering>
 	<type-mapping>
-		<sql-type jdbc-type="NVARCHAR" hibernate-type='string'
-			not-null="true"></sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 	</type-mapping>
+	<table-filter match-schema="public" match-name=".*"></table-filter>
+	<!-- <table schema="public" name="pedido"></table>
+		<table schema="public" name="produtopedido"></table>
+		
+		<table schema="public" name="cliente"></table>
+		<table schema="public" name="usuario"></table>
+		<table schema="public" name="tipoproduto"></table>
+		<table schema="public" name="produto"></table> -->
 
-
-
-
-
-
-<table-filter match-catalog="SEVP" match-schema="dbo"
-		match-name=".*">
-	</table-filter>
-	<table catalog="SEVP" schema="dbo" name="Produto"></table>
-	<table catalog="SEVP" schema="dbo" name="Pedido"></table>
-	<table catalog="SEVP" schema="dbo" name="TipoProduto"></table>
-	<table catalog="SEVP" schema="dbo" name="Cliente"></table>
-	<table catalog="SEVP" schema="dbo" name="ProdutoPedido"></table>
-	<table catalog="SEVP" schema="dbo" name="Usuario"></table>
+	 <table schema="public" name="usuarioroles"></table>
 </hibernate-reverse-engineering>

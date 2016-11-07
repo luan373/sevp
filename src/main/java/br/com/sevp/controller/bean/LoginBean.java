@@ -2,12 +2,18 @@ package br.com.sevp.controller.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Connection;
 
+import javax.activation.DataSource;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.rmi.PortableRemoteObject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -87,9 +93,10 @@ public class LoginBean implements Serializable {
 		return FacesContext.getCurrentInstance();
 	}
 
-	public void login() throws IOException {
+	public void login() throws IOException, NamingException {
 		ExternalContext externalContext = externalContext();
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+
 		try {
 			request.login(login, senha);
 			externalContext.getSessionMap().put(SESSION_USER_VARIABLE_NAME, new Usuario(login));

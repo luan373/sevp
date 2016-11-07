@@ -45,7 +45,7 @@
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Visível para quem consegue logar como USUÁRIO.</web-resource-name>
-			<url-pattern>/*</url-pattern>
+			<url-pattern>/usuario/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>user</role-name>
@@ -67,10 +67,10 @@
 	<!-- Configurações Tomcat com o Postgres -->
 	<resource-ref>
 		<description>postgreSQL Datasource connection</description>
-		<res-ref-name>jdbc/postgres</res-ref-name>
+		<res-ref-name>jdbc/sevp</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
-	</resource-ref>
+	</resource-ref> 
 
 
 </web-app>

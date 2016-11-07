@@ -58,11 +58,13 @@
 			<artifactId>sqljdbc4</artifactId> <version>4.0</version> </dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>9.2-1004-jdbc41</version>
+			<version>9.4.1211.jre7</version>
 		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-api -->
 		<dependency>

@@ -26,7 +26,7 @@ public class PedidoDao extends AbstractDao {
 
 		return pedido;
 	}
-	
+
 	public void inserir(Pedido pedido) {
 		Session session = this.getSession();
 
@@ -38,6 +38,7 @@ public class PedidoDao extends AbstractDao {
 			transaction.rollback();
 			e.printStackTrace();
 		}
+
 	}
 
 	public void alterar(Pedido pedido) {
@@ -53,7 +54,7 @@ public class PedidoDao extends AbstractDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void excluir(Pedido pedido) {
 		Session session = this.getSession();
 
@@ -67,5 +68,5 @@ public class PedidoDao extends AbstractDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 }
