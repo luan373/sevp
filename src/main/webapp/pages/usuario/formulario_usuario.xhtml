@@ -3,144 +3,138 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition template="/templates/principal.xhtml">
+	<ui:define name="conteudo">
+		<div class="container">
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<h5 class="breadcrumbs-title">#{usuarioManterBean.addTituloPagina()}</h5>
 
-<ui:include src="/head.xhtml" />
-<script type="text/javascript">
-	function salvar() {
-		$('#modal2').openModal();			
-	}
-	function excluir() {
-		$('#modal3').openModal();			
-	}
-	</script>
-<ui:include src="/templates/ScriptsJs.xhtml" />
-<h:body>
-	<!--  -->
-	<ui:include src="/topo.xhtml" />
-	<main>
-	<div class="container">
-		<div class="row">
-			<div class="col s12 m12 l12">
-				<h5 class="breadcrumbs-title">#{usuarioManterBean.addTituloPagina()}</h5>
+					<div class="row">
+						<!-- Estrutura da modal -->
+						<h:form>
+							<div id="modal1" class="modal">
+								<div class="modal-content">
+									<h4>Confirmação</h4>
+									<p>Essa opção excluirá o registro, deseja continuar?</p>
+								</div>
 
-				<div class="row">
-					<!-- Estrutura da modal -->
-					<h:form>
-						<div id="modal1" class="modal">
-							<div class="modal-content">
-								<h4>Confirmação</h4>
-								<p>Essa opção excluirá o registro, deseja continuar?</p>
+								<div class="modal-footer">
+									<h:commandButton value="Confirmar"
+										class="modal-action modal-close waves-effect waves-green btn-flat"
+										action="#{usuarioManterBean.excluiUsuario()}" type="submit"
+										name="confirmaExclusao" />
+									<h:commandButton value="Cancelar"
+										class="modal-action modal-close waves-effect waves-red btn-flat"
+										type="button" name="cancelarExclusao" />
+								</div>
 							</div>
+							<!-- Alerta de sucesso -->
+							<div id="modal2" class="modal">
+								<div class="modal-content">
+									<h4>Sucesso</h4>
+									<p>Registro salvo com sucesso.</p>
+								</div>
 
-							<div class="modal-footer">
-								<h:commandButton value="Confirmar"
-									class="modal-action modal-close waves-effect waves-green btn-flat"
-									action="#{usuarioManterBean.excluiUsuario()}" type="submit"
-									name="confirmaExclusao" />
-								<h:commandButton value="Cancelar"
-									class="modal-action modal-close waves-effect waves-red btn-flat"
-									type="button" name="cancelarExclusao" />
+								<div class="modal-footer">
+									<h:commandLink value="OK"
+										class="modal-action modal-close waves-effect waves-green btn-flat"
+										action="pesquisa_usuario?faces-redirect=true" type="submit"
+										name="sucesso" />
+								</div>
 							</div>
-						</div>
-						<!-- Alerta de sucesso -->
-						<div id="modal2" class="modal">
-							<div class="modal-content">
-								<h4>Sucesso</h4>
-								<p>Registro salvo com sucesso.</p>
-							</div>
+							<!-- Exclusão de sucesso -->
+							<div id="modal3" class="modal">
+								<div class="modal-content">
+									<h4>Sucesso</h4>
+									<p>Registro excluído com sucesso.</p>
+								</div>
 
-							<div class="modal-footer">
-								<h:commandLink value="OK"
-									class="modal-action modal-close waves-effect waves-green btn-flat"
-									action="pesquisa_usuario?faces-redirect=true" type="submit"
-									name="sucesso" />
+								<div class="modal-footer">
+									<h:commandLink value="OK"
+										class="modal-action modal-close waves-effect waves-green btn-flat"
+										action="pesquisa_usuario?faces-redirect=true" type="submit"
+										name="sucesso" />
+								</div>
 							</div>
-						</div>
-						<!-- Exclusão de sucesso -->
-						<div id="modal3" class="modal">
-							<div class="modal-content">
-								<h4>Sucesso</h4>
-								<p>Registro excluído com sucesso.</p>
-							</div>
-
-							<div class="modal-footer">
-								<h:commandLink value="OK"
-									class="modal-action modal-close waves-effect waves-green btn-flat"
-									action="pesquisa_usuario?faces-redirect=true" type="submit"
-									name="sucesso" />
-							</div>
-						</div>
-					</h:form>
+						</h:form>
 
 
-					<!-- Fim estrutura modal -->
-					<h:form id="formValidate" prependId="false">
+						<!-- Fim estrutura modal -->
+						<h:form id="formValidate" prependId="false">
 
-						<div class="row">
-							<div class="input-field col s12">
-								<h:inputText value="#{usuarioManterBean.usuario.nome}" id="nome"
-									name="nome" aria-required="true" />
-								<h:outputLabel class="active" value="Nome" for="nome" />
+							<div class="row">
+								<div class="input-field col s12">
+									<h:inputText value="#{usuarioManterBean.usuario.nome}"
+										id="nome" name="nome" aria-required="true" />
+									<h:outputLabel class="active" value="Nome" for="nome" />
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="input-field col s12">
-								<h:inputText value="#{usuarioManterBean.usuario.usuario}"
-									id="usuario" name="usuario" aria-required="true"
-									disabled="#{usuarioManterBean.usuario.idUsuario!=0}" />
-								<h:outputLabel class="active" value="Usuário" for="usuario" />
+							<div class="row">
+								<div class="input-field col s12">
+									<h:inputText value="#{usuarioManterBean.usuario.usuario}"
+										id="usuario" name="usuario" aria-required="true"
+										disabled="#{usuarioManterBean.usuario.idUsuario!=0}" />
+									<h:outputLabel class="active" value="Usuário" for="usuario" />
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="input-field col s12">
-								<h:inputSecret value="#{usuarioManterBean.usuario.senha}"
-									id="senha" name="senha" redisplay="true" aria-required="true" />
-								<h:outputLabel class="active" value="Senha" for="senha" />
+							<div class="row">
+								<div class="input-field col s12">
+									<h:inputSecret value="#{usuarioManterBean.usuario.senha}"
+										id="senha" name="senha" redisplay="true" aria-required="true" />
+									<h:outputLabel class="active" value="Senha" for="senha" />
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="input-field col s12">
-								<h:inputSecret id="confirmaSenha" name="confirmaSenha"
-									value="#{usuarioManterBean.usuario.senha}" redisplay="true"
-									aria-required="true" />
-								<h:outputLabel class="active" value="Confirmar Senha"
-									for="confirmaSenha" />
+							<div class="row">
+								<div class="input-field col s12">
+									<h:inputSecret id="confirmaSenha" name="confirmaSenha"
+										value="#{usuarioManterBean.usuario.senha}" redisplay="true"
+										aria-required="true" />
+									<h:outputLabel class="active" value="Confirmar Senha"
+										for="confirmaSenha" />
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="input-field col s12">
-								<h:selectBooleanCheckbox class="filled-in" id="ativo"
-									name="ativo" value="#{usuarioManterBean.usuario.ativo}" />
-								<h:outputLabel class="active" value="Ativo" for="ativo" />
+							<div class="row">
+								<div class="input-field col s12">
+									<h:selectBooleanCheckbox class="filled-in" id="ativo"
+										name="ativo" value="#{usuarioManterBean.usuario.ativo}" />
+									<h:outputLabel class="active" value="Ativo" for="ativo" />
+								</div>
 							</div>
-						</div>
-						<div class="row">
+							<div class="row">
 
-							<h:commandButton
-								class="btn waves-effect waves-light right submit" value="Salvar"
-								id="salvarUsuario" action="#{usuarioManterBean.validaUsuario()}">
+								<h:commandButton
+									class="btn waves-effect waves-light right submit"
+									value="Salvar" id="salvarUsuario"
+									action="#{usuarioManterBean.validaUsuario()}">
 
-							</h:commandButton>
-							<h:commandButton
-								class="btn waves-effect waves-light right submit"
-								value="excluir" id="apresenta" type="button"
-								rendered="#{usuarioManterBean.usuario.idUsuario!=0}">
+								</h:commandButton>
+								<h:commandButton
+									class="btn waves-effect waves-light right submit"
+									value="excluir" id="apresenta" type="button"
+									rendered="#{usuarioManterBean.usuario.idUsuario!=0}">
 
-							</h:commandButton>
-							<h:commandLink class="btn waves-effect waves-light right submit"
-								action="#{usuarioManterBean.direcionaPagina('pesquisa_usuario')}"
-								value="Cancelar">
-							</h:commandLink>
-						</div>
-					</h:form>
+								</h:commandButton>
+								<h:commandLink class="btn waves-effect waves-light right submit"
+									action="#{usuarioManterBean.direcionaPagina('pesquisa_usuario')}"
+									value="Cancelar">
+								</h:commandLink>
+							</div>
+						</h:form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	</main>
-	<ui:include src="/fundo.xhtml" />
+		<h:outputScript>
+		function salvar() {
+			$('#modal2').openModal();			
+		}
+		function excluir() {
+			$('#modal3').openModal();			
+		}
+	</h:outputScript>
 
-	<h:outputScript target="form">
+		<h:outputScript target="form">
 $(function() {
 	
 	$('#apresenta').click(function() {
@@ -213,7 +207,7 @@ $("#formValidate").validate({
 
 });
 </h:outputScript>
-	<h:outputStylesheet>
+		<h:outputStylesheet>
 label {
     width: 100%;
 }
@@ -226,7 +220,7 @@ label {
     -o-transform: translateY(-140%);
     transform: translateY(-140%);
 }
-</h:outputStylesheet>
-
-</h:body>
+		</h:outputStylesheet>
+	</ui:define>
+</ui:composition>
 </html>

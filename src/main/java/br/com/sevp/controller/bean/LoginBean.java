@@ -76,7 +76,7 @@ public class LoginBean implements Serializable {
 		try {
 			request.login(login, senha);
 			externalContext.getSessionMap().put(SESSION_USER_VARIABLE_NAME, new Usuario(login));
-			externalContext.redirect(urlSeguinte + "pages/index.xhtml");
+			externalContext.redirect("pages/index.xhtml");
 		} catch (ServletException e) {
 			String loginErrorMessage = e.getLocalizedMessage();
 			setMensagem("Usuário ou senha incorretos");

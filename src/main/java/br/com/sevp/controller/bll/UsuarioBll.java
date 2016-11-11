@@ -3,6 +3,8 @@ package br.com.sevp.controller.bll;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.NonUniqueObjectException;
+
 import br.com.sevp.excpetion.SevpException;
 import br.com.sevp.model.dao.UsuarioDao;
 import br.com.sevp.model.dao.UsuarioRolesDao;
@@ -21,10 +23,7 @@ public class UsuarioBll implements Serializable {
 
 	public void inserir(Usuario usuario) throws SevpException {
 		// verifica se ja existe um loco com esse usuario, caso tenha
-		if (validaUsuario(usuario.getUsuario()) == false) {
-			throw new SevpException("Usuário já existente");
-		}
-
+		this.validaUsuario(usuario.getUsuario());
 		this.usuarioDao.inserir(usuario);
 
 		// insere sua permisão de usuário
@@ -36,7 +35,6 @@ public class UsuarioBll implements Serializable {
 	@SuppressWarnings("null")
 	public void alterar(Usuario usuario) throws SevpException {
 		String usuarioValidacao = usuario.getUsuario();
-		usuario = null;
 		usuario.setUsuario(usuarioValidacao);
 		this.usuarioDao.alterar(usuario);
 	}
@@ -56,8 +54,12 @@ public class UsuarioBll implements Serializable {
 		return resultado;
 	}
 
-	public boolean validaUsuario(String usuario) {
-		return this.usuarioDao.validaUsuario(usuario);
+	public void validaUsuario(String usuario) throws SevpException {
+		try{
+			this.usuarioDao.validaUsuario(usuario);
+		}catch (NonUniqueObjectException e) {
+			throw new SevpException("Usuário já existe");
+		}
 	}
 
 	public List<Usuario> listar() {

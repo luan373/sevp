@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.NonUniqueObjectException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.sevp.excpetion.SevpException;
 import br.com.sevp.model.entity.Usuario;
 
 public class UsuarioDao extends AbstractDao implements Serializable {
@@ -95,15 +97,12 @@ public class UsuarioDao extends AbstractDao implements Serializable {
 		}
 	}
 
-	public boolean validaUsuario(String usuario) {
+	public void validaUsuario(String usuario) throws SevpException {
 		Criteria criteria = this.getSession().createCriteria(Usuario.class);
 		criteria.add(Restrictions.eq("usuario", usuario));
-
-		if (criteria.uniqueResult() == null) {
-			return true;
+		if (criteria.uniqueResult() != null) {
+			throw new SevpException("Usuário já existente");	
 		}
-
-		return false;
 	}
 
 	/**

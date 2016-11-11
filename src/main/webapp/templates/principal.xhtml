@@ -1,25 +1,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<title>JSF 2.0 - Exemplo de template</title>
+
 </h:head>
+<ui:include src="/templates/ScriptsJs.xhtml" />
 <h:body>
 	<ui:insert name="cabecalho">
 		<div class="navbar-fixed">
 			<!-- Estrutura Dropdown -->
 			<h:form>
 				<ul id="dropdown1" class="dropdown-content">
-					<li><h:commandLink action="pages/usuario/pesquisa_usuario"
+					<li><h:commandLink action="/pages/usuario/pesquisa_usuario"
 							value="Pesquisar Usuário" /></li>
-					<li><h:commandLink action="pages/usuario/formulario_usuario"
+					<li><h:commandLink action="/pages/usuario/formulario_usuario"
 							value="Cadastrar Usuário" /></li>
 				</ul>
 			</h:form>
 			<nav class="blue-grey darken-3" role="navigation">
 				<div class="nav-wrapper container">
 					<h:form>
-						<h:commandLink id="logo-container" action="/index"
+						<h:commandLink id="logo-container" action="/pages/index"
 							class="brand-logo">SEVP</h:commandLink>
 						<ul class="right hide-on-med-and-down">
 							<li><h:commandLink action="#{loginBean.logout()}"
@@ -77,6 +80,8 @@
 				</div>
 			</div>
 		</footer>
+
+
 		<h:outputStylesheet library="css/layouts" name="iconsMaterial.css" />
 
 		<h:outputStylesheet library="css" name="style.css" />
