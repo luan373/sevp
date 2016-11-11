@@ -46,30 +46,6 @@ public class LoginBean implements Serializable {
 	private String urlSeguinte;
 	private String mensagem;
 
-	public String getMensagem() {
-		return mensagem;
-	}
-
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
 	@PostConstruct
 	public void init() {
 		this.urlSeguinte = extractRequestedUrlBeforeLogin();
@@ -93,14 +69,14 @@ public class LoginBean implements Serializable {
 		return FacesContext.getCurrentInstance();
 	}
 
-	public void login() throws IOException, NamingException {
+	public void login() throws IOException, NamingException, ClassNotFoundException {
 		ExternalContext externalContext = externalContext();
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
 		try {
 			request.login(login, senha);
 			externalContext.getSessionMap().put(SESSION_USER_VARIABLE_NAME, new Usuario(login));
-			externalContext.redirect(urlSeguinte + "index.xhtml");
+			externalContext.redirect(urlSeguinte + "pages/index.xhtml");
 		} catch (ServletException e) {
 			String loginErrorMessage = e.getLocalizedMessage();
 			setMensagem("Usuário ou senha incorretos");
@@ -121,6 +97,30 @@ public class LoginBean implements Serializable {
 
 	public boolean isUsuarioLogado() {
 		return getUsuario() != null;
+	}
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 }

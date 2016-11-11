@@ -1,0 +1,95 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>JSF 2.0 - Exemplo de template</title>
+</h:head>
+<h:body>
+	<ui:insert name="cabecalho">
+		<div class="navbar-fixed">
+			<!-- Estrutura Dropdown -->
+			<h:form>
+				<ul id="dropdown1" class="dropdown-content">
+					<li><h:commandLink action="pages/usuario/pesquisa_usuario"
+							value="Pesquisar Usuário" /></li>
+					<li><h:commandLink action="pages/usuario/formulario_usuario"
+							value="Cadastrar Usuário" /></li>
+				</ul>
+			</h:form>
+			<nav class="blue-grey darken-3" role="navigation">
+				<div class="nav-wrapper container">
+					<h:form>
+						<h:commandLink id="logo-container" action="/index"
+							class="brand-logo">SEVP</h:commandLink>
+						<ul class="right hide-on-med-and-down">
+							<li><h:commandLink action="#{loginBean.logout()}"
+									value="Sair" /></li>
+						</ul>
+						<ul class="right hide-on-med-and-down">
+							<li><a class="dropdown-button" data-activates="dropdown1">Usuário<i
+									class="material-icons right">arrow_drop_down</i>
+							</a></li>
+						</ul>
+					</h:form>
+				</div>
+			</nav>
+		</div>
+	</ui:insert>
+	<main> <ui:insert name="conteudo">
+		<h1>Eaeeee</h1>
+	</ui:insert> </main>
+	<ui:insert name="rodape">
+		<footer class="page-footer blue-grey darken-3">
+			<div class="container">
+				<div class="row">
+					<div class="col l6 s12">
+						<h5 class="white-text">Java Granada</h5>
+						<p class="white-text">Tu tá querendo brincar, mas só que tu
+							não entende java, se quiser pode vir, que o JSF é preparada.
+							Melhor dá espaço pra ela pois a dificuldade é brava, Então taca
+							taca taca taca taca.</p>
+
+					</div>
+					<div class="col l3 s12">
+						<h5 class="white-text">Settings</h5>
+						<ul>
+							<li><a class="white-text" href="#!">Link 1</a></li>
+							<li><a class="white-text" href="#!">Link 2</a></li>
+							<li><a class="white-text" href="#!">Link 3</a></li>
+							<li><a class="white-text" href="#!">Link 4</a></li>
+						</ul>
+					</div>
+					<div class="col l3 s12">
+						<h5 class="white-text">Connect</h5>
+						<ul>
+							<li><a class="white-text" href="#!">Link 1</a></li>
+							<li><a class="white-text" href="#!">Link 2</a></li>
+							<li><a class="white-text" href="#!">Link 3</a></li>
+							<li><a class="white-text" href="#!">Link 4</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<div class="container">
+					Made by <a class="orange-text text-lighten-3"
+						href="http://materializecss.com">Materialize</a>
+				</div>
+			</div>
+		</footer>
+		<h:outputStylesheet library="css/layouts" name="iconsMaterial.css" />
+
+		<h:outputStylesheet library="css" name="style.css" />
+		<h:outputStylesheet library="css" name="footer.css" />
+
+		<!--  Scripts-->
+		<h:outputStylesheet library="css" name="materialize.css" />
+		<h:outputScript library="js/plugins" name="jquery-2.1.1.min.js"
+			target="head" />
+		<h:outputScript library="js/validation" name="jquery.validate.js" />
+		<h:outputScript library="js" name="materialize.min.js" target="head" />
+		<h:outputScript library="js" name="init.js" target="head" />
+		<h:outputScript library="js/page" name="app.js" target="head" />
+	</ui:insert>
+</h:body>
+</html>

@@ -5,54 +5,13 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-
 	<title>Login</title>
-
-	<!-- Favicons-->
-	<link rel="icon" href="resources/images/favicon/favicon-32x32.png"
-		sizes="32x32" />
-	<!-- Favicons-->
-	<link rel="apple-touch-icon-precomposed"
-		href="resources/images/favicon/apple-touch-icon-152x152.png" />
-	<!-- For iPhone -->
-	<meta name="msapplication-TileColor" content="#00bcd4" />
-	<meta name="msapplication-TileImage"
-		content="resources/images/favicon/mstile-144x144.png" />
-	<!-- For Windows Phone -->
-
-
-	<!-- CORE CSS-->
-	<link href="resources/css/materialize.css" type="text/css"
-		rel="stylesheet" media="screen,projection" />
-	<link href="resources/css/style.min.css" type="text/css"
-		rel="stylesheet" media="screen,projection" />
-	<!-- Custome CSS-->
-	<link href="resources/css/custom/custom.min.css" type="text/css"
-		rel="stylesheet" media="screen,projection" />
-	<link href="resources/css/layouts/page-center.css" type="text/css"
-		rel="stylesheet" media="screen,projection" />
-
-	<!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
-	<link href="resources/js/plugins/prism/prism.css" type="text/css"
-		rel="stylesheet" media="screen,projection" />
-	<link
-		href="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css"
-		type="text/css" rel="stylesheet" media="screen,projection" />
-</h:head>
+</h:head><!-- 
 <script type="text/javascript"
-	src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js" />
-<h:body class="blue-grey">
-	<!-- Start Page Loading 
-	<div id="loader-wrapper">
-		<div id="loader"></div>
-		<div class="loader-section section-left"></div>
-		<div class="loader-section section-right"></div>
-	</div>
-	End Page Loading -->
+	src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js" /> -->
+<h:body class="blue-grey block" >
 
-
-
-	<div id="login-page" class="row">
+	<div id="login-page" class="midle">
 		<div class="col s12 z-depth-4 card-panel">
 			<h:form id="form-login" class="login-form" novalidate="novalidate">
 				<div class="row">
@@ -87,77 +46,32 @@
 			</h:form>
 		</div>
 	</div>
+	<!-- CSS  -->
+	<h:outputStylesheet library="css/layouts" name="iconsMaterial.css" />
 
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="footer.css" />
 
+	<h:outputStylesheet library="css/custom" name="custom.min.css" />
+	<h:outputStylesheet library="css/layouts" name="page-center.css" />
 
-	<!-- ================================================
-    Scripts
-    ================================================ -->
+	<h:outputStylesheet library="css" name="materialize.css" />
 
-	<!-- jQuery Library -->
-	<script type="text/javascript"
-		src="resources/js/plugins/jquery-2.1.1.min.js">
-	</script>
-	<!-- materialize js -->
-	<script type="text/javascript" src="resources/js/materialize.min.js"></script>
-	<!--prism-->
-	<script type="text/javascript"
-		src="resources/js/plugins/prism/prism.js"></script>
-	<!-- scrollbar -->
-	<script type="text/javascript"
-		src="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<!-- CSS -->
+	<h:outputStylesheet library="js/plugins/prism" name="prism.css" />
+	<h:outputStylesheet library="js/plugins/perfect-scrollbar"
+		name="perfect-scrollbar.css" />
+	<!--  Scripts-->
+	<h:outputScript library="js/plugins/prism" name="prism.js" />
+	<h:outputScript library="js/plugins/perfect-scrollbar"
+		name="perfect-scrollbar.min.js" />
 
-	<!-- plugins.js - Some Specific JS codes for Plugin Settings -->
-	<script type="text/javascript" src="resources/js/plugins.min.js"></script>
-	<!-- custom-script.js - Add your own theme custom JS -->
-	<script type="text/javascript" src="resources/js/custom-script.js"></script>
-
-	<h:outputScript library="js/validation" name="jquery.validate.js" />
-	<!-- <h:outputScript>
-	$.validator.setDefaults({
-	errorClass: 'invalid',
-    validClass: "valid",
-    errorPlacement: function (error, element) {
-        $(element)
-            .closest("form")
-            .find("label[for='" + element.attr("id") + "']")
-            .attr('data-error', error.text());
-    },
-		submitHandler: function() {
-			console.log("submitted!");
-		}
-	});
-
-	
-		// validate signup form on keyup and submit
-		$("#form-login").validate({
-			rules: {
-				username: {
-					required: true,
-					minlength: 2
-				},
-				password: {
-					required: true,
-					minlength: 5
-				},
-			},
-			messages: {
-				username: {
-					required: "Please enter a username",
-					minlength: "Your username must consist of at least 2 characters"
-				},
-				password: {
-					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long"
-				},				
-			}
-		});
-	</h:outputScript>
-	<h:outputStylesheet>
-	label {
-    width: 100%;
-	}
-	</h:outputStylesheet> -->
+	<h:outputScript library="js" name="custom-script.js" />
+	<h:outputScript library="js/page" name="app.js" />
+	<h:outputScript library="js" name="init.js" />
+	<h:outputScript library="js/plugins" name="jquery-2.1.1.min.js" />
+	<h:outputScript library="js" name="materialize.js" />
+	<h:outputScript library="js" name="plugins.min.js" />
 </h:body>
 
 </html>

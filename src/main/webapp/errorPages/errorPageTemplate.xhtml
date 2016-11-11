@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>SEVP - ERRO</title>
+</h:head>
+<body class="blue-grey">
+	<ui:insert name="cabecalho">
+		
+	</ui:insert>
+	<main> <ui:insert name="conteudo">
+		<h1>Deu erroooooooo</h1>
+	</ui:insert> </main>
+	<ui:insert name="rodape">
+		<!-- CORE CSS-->
+		<h:outputStylesheet library="css" name="materialize.min.css" />
+		<h:outputStylesheet library="css" name="style.min.css" />
+		<!-- Custome CSS-->
+		<h:outputStylesheet library="css/custom" name="custom.min.css" />
+		<h:outputStylesheet library="css/layouts" name="page-center.css" />
+
+		<!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+		<h:outputStylesheet library="js/plugins/prism" name="prism.css" />
+		<h:outputStylesheet library="js/plugins/perfect-scrollbar"
+			name="perfect-scrollbar.css" />
+
+		<!-- JS -->
+		<!-- jQuery Library -->
+		<h:outputScript library="js/plugins" name="jquery-1.11.2.min.js" />
+		<!--materialize js-->
+		<h:outputScript library="js" name="materialize.min.js" />
+		<!--prism-->
+		<h:outputScript library="js/plugins/prism" name="prism.js" />
+		<!--scrollbar-->
+		<h:outputScript library="js/plugins/perfect-scrollbar"
+			name="perfect-scrollbar.min.js" />
+
+		<!--plugins.js - Some Specific JS codes for Plugin Settings-->
+		<h:outputScript library="js" name="plugins.min.js" />
+		<!--custom-script.js - Add your own theme custom JS-->
+		<h:outputScript library="js" name="custom-script.js" />
+	</ui:insert>
+</body>
+</html>
