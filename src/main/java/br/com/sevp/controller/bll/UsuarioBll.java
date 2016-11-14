@@ -41,6 +41,10 @@ public class UsuarioBll implements Serializable {
 
 	public void excluir(Usuario usuario) {
 		this.usuarioDao.excluir(usuario);
+
+		// exclui a permissão de usuário
+		UsuarioRolesDao usuarioRolesDao = new UsuarioRolesDao();
+		usuarioRolesDao.excluir(usuario.getUsuario());
 	}
 
 	public Usuario recuperar(long idUsuario) {
@@ -55,9 +59,9 @@ public class UsuarioBll implements Serializable {
 	}
 
 	public void validaUsuario(String usuario) throws SevpException {
-		try{
+		try {
 			this.usuarioDao.validaUsuario(usuario);
-		}catch (NonUniqueObjectException e) {
+		} catch (NonUniqueObjectException e) {
 			throw new SevpException("Usuário já existe");
 		}
 	}
