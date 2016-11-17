@@ -2,27 +2,23 @@ package br.com.sevp.controller.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.sql.Connection;
 
-import javax.activation.DataSource;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.rmi.PortableRemoteObject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import br.com.sevp.controller.bll.LoginBll;
 import br.com.sevp.model.entity.Usuario;
 
 @ManagedBean(name = "loginBean")
-@ViewScoped
+@SessionScoped
 public class LoginBean implements Serializable {
 	/**
 	 * serialVersionUID
@@ -39,17 +35,11 @@ public class LoginBean implements Serializable {
 
 	private static final String SESSION_USER_VARIABLE_NAME = "usuario";
 
-	private LoginBll loginBll;
 	private String login;
 	private String senha;
-
-	private String urlSeguinte;
 	private String mensagem;
 
-	@PostConstruct
-	public void init() {
-		this.urlSeguinte = extractRequestedUrlBeforeLogin();
-	}
+	private boolean logado = false;
 
 	private String extractRequestedUrlBeforeLogin() {
 		ExternalContext externalContext = externalContext();
@@ -72,18 +62,24 @@ public class LoginBean implements Serializable {
 	public void login() throws IOException, NamingException, ClassNotFoundException {
 		ExternalContext externalContext = externalContext();
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+		HttpSession httpSession = request.getSession();
 
+		
+		
 		try {
 			request.login(login, senha);
-			externalContext.getSessionMap().put(SESSION_USER_VARIABLE_NAME, new Usuario(login));
+			setLogado(true);
+			httpSession.setAttribute(SESSION_USER_VARIABLE_NAME, isLogado());
 			externalContext.redirect("pages/index.xhtml");
 		} catch (ServletException e) {
-			String loginErrorMessage = e.getLocalizedMessage();
+			e.getLocalizedMessage();
 			setMensagem("Usuário ou senha incorretos");
 		}
 	}
 
 	public void logout() throws IOException {
+		setLogado(false);
+
 		ExternalContext externalContext = externalContext();
 		externalContext.invalidateSession();
 		externalContext.redirect(externalContext.getRequestContextPath() + PAGE_AFTER_LOGOUT);
@@ -92,7 +88,21 @@ public class LoginBean implements Serializable {
 	public Usuario getUsuario() {
 		FacesContext context = facesContext();
 		ExternalContext externalContext = context.getExternalContext();
-		return (Usuario) externalContext.getSessionMap().get("user");
+		return (Usuario) externalContext.getSessionMap().get("usuario");
+
+	}
+
+	// Set Object in Session
+	public void setSession(String nomeAtributo, String value) {
+
+	}
+
+	// Get Object in Session
+	public String getSession(String nomeAtributo) {
+		FacesContext context = facesContext();
+		ExternalContext externalContext = context.getExternalContext();
+
+		return (String) externalContext.getSessionMap().get(nomeAtributo);
 	}
 
 	public boolean isUsuarioLogado() {
@@ -121,6 +131,14 @@ public class LoginBean implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public boolean isLogado() {
+		return logado;
+	}
+
+	public void setLogado(boolean logado) {
+		this.logado = logado;
 	}
 
 }
