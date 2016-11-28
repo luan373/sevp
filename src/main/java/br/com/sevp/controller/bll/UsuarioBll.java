@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.hibernate.NonUniqueObjectException;
 
-import br.com.sevp.excpetion.SevpException;
+import br.com.sevp.exception.SevpException;
 import br.com.sevp.model.dao.UsuarioDao;
 import br.com.sevp.model.dao.UsuarioRolesDao;
 import br.com.sevp.model.entity.Usuario;
@@ -32,10 +32,7 @@ public class UsuarioBll implements Serializable {
 
 	}
 
-	@SuppressWarnings("null")
 	public void alterar(Usuario usuario) throws SevpException {
-		String usuarioValidacao = usuario.getUsuario();
-		usuario.setUsuario(usuarioValidacao);
 		this.usuarioDao.alterar(usuario);
 	}
 

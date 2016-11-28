@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import br.com.sevp.controller.bll.UsuarioBll;
-import br.com.sevp.excpetion.SevpException;
+import br.com.sevp.exception.SevpException;
 import br.com.sevp.model.dao.AbstractNavigation;
 import br.com.sevp.model.entity.Usuario;
 
@@ -16,7 +16,7 @@ import br.com.sevp.model.entity.Usuario;
 public class UsuarioManterBean extends AbstractNavigation implements Serializable {
 
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = -4347964920110318709L;
 
@@ -38,18 +38,15 @@ public class UsuarioManterBean extends AbstractNavigation implements Serializabl
 	}
 
 	public void validaUsuario() {
-
 		try {
 			if (usuario.getIdUsuario() == 0) {
 				this.usuarioBll.inserir(usuario);
 				getScriptsJsBean().executaScript("salvar();");
-				// js();
 			} else {
 				this.usuarioBll.alterar(usuario);
 				getScriptsJsBean().executaScript("salvar();");
 			}
 		} catch (SevpException e) {
-			// TODO Auto-generated catch block
 			getScriptsJsBean().executaScript("MessagemErroToast('" + e.getMessage() + "');");
 		} catch (Exception e) {
 			getScriptsJsBean().executaScript("MessagemErroToastDefault('" + e.getMessage() + "');");
@@ -84,4 +81,5 @@ public class UsuarioManterBean extends AbstractNavigation implements Serializabl
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
 }

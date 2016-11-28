@@ -4,14 +4,12 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -40,7 +38,7 @@ public class LoginBean implements Serializable {
 	private String mensagem;
 
 	private boolean logado = false;
-
+	
 	private String extractRequestedUrlBeforeLogin() {
 		ExternalContext externalContext = externalContext();
 		String requestedUrl = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_REQUEST_URI);
@@ -63,8 +61,8 @@ public class LoginBean implements Serializable {
 		ExternalContext externalContext = externalContext();
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		HttpSession httpSession = request.getSession();
-
 		
+		extractRequestedUrlBeforeLogin();
 		
 		try {
 			request.login(login, senha);

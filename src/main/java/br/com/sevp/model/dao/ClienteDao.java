@@ -6,9 +6,11 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.sevp.model.entity.Cliente;
+import br.com.sevp.model.entity.Usuario;
 
 public class ClienteDao extends AbstractDao {
 	/**
@@ -75,6 +77,22 @@ public class ClienteDao extends AbstractDao {
 			transaction.rollback();
 			e.printStackTrace();
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Cliente> pesquisar(Cliente cliente) {
+		Criteria criteria = this.getSession().createCriteria(Usuario.class);
+		if (cliente.getNomeRazao() != null && !cliente.getNomeRazao().equals("")) {
+			criteria.add(Restrictions.like("nome", cliente.getNomeRazao(), MatchMode.ANYWHERE));
+		}
+
+		if (cliente.getCpfCnpj() != null && !cliente.getCpfCnpj().equals("")) {
+			criteria.add(Restrictions.like("usuario", cliente.getCpfCnpj(), MatchMode.ANYWHERE));
+		}
+
+		List<Cliente> resultado = criteria.list();
+
+		return resultado;
 	}
 
 }

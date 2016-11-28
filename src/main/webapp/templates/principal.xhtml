@@ -12,7 +12,13 @@
 		<div class="navbar-fixed">
 			<!-- Estrutura Dropdown -->
 			<h:form>
-				<ul id="dropdown1" class="dropdown-content">
+				<ul id="cliente" class="dropdown-content">
+					<li><h:commandLink action="/pages/cliente/pesquisa_cliente"
+							value="Pesquisar Cliente" /></li>
+					<li><h:commandLink action="/pages/cliente/formulario_cliente"
+							value="Cadastrar Cliente" /></li>
+				</ul>
+				<ul id="usuario" class="dropdown-content">
 					<li><h:commandLink action="/pages/usuario/pesquisa_usuario"
 							value="Pesquisar Usuário" /></li>
 					<li><h:commandLink action="/pages/usuario/formulario_usuario"
@@ -29,7 +35,11 @@
 									value="Sair" /></li>
 						</ul>
 						<ul class="right hide-on-med-and-down">
-							<li><a class="dropdown-button" data-activates="dropdown1">Usuário<i
+							<li><a class="dropdown-button" data-activates="cliente">Cliente<i
+									class="material-icons right">arrow_drop_down</i> </a></li>
+						</ul>
+						<ul class="right hide-on-med-and-down">
+							<li><a class="dropdown-button" data-activates="usuario">Usuário<i
 									class="material-icons right">arrow_drop_down</i>
 							</a></li>
 						</ul>

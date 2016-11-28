@@ -1,8 +1,6 @@
 package br.com.sevp.util;
 
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -14,8 +12,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import br.com.sevp.controller.bean.LoginBean;
 
 @WebFilter(value = "/login.xhtml")
 public class LoginFilter implements Filter {
@@ -69,9 +65,7 @@ public class LoginFilter implements Filter {
 				// Nothing to do
 				chain.doFilter(request, response);
 			} else {
-				// Redirect to "login.xhtml" if he has not logged in
-				HttpServletResponse res = (HttpServletResponse) response;
-				res.sendRedirect(((HttpServletRequest) request).getContextPath() + "/login.xhtml");
+				//do nothing
 			}
 		}
 	}

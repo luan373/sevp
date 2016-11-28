@@ -10,7 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.sevp.excpetion.SevpException;
+import br.com.sevp.exception.SevpException;
 import br.com.sevp.model.entity.Usuario;
 
 public class UsuarioDao extends AbstractDao implements Serializable {

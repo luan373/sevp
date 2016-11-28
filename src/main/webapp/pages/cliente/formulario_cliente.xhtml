@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition template="/templates/principal.xhtml">
+	<ui:define name="conteudo">
+		<div class="container">
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<h5 class="breadcrumbs-title">#{clienteBean.addTituloPagina()}</h5>
+
+					<div class="row">
+						<!-- Estrutura da modal -->
+						<h:form>
+							<div id="modal1" class="modal">
+								<div class="modal-content">
+									<h4>Confirmação</h4>
+									<p>Essa opção excluirá o registro, deseja continuar?</p>
+								</div>
+
+								<div class="modal-footer">
+									<h:commandButton value="Confirmar"
+										class="modal-action modal-close waves-effect waves-green btn-flat"
+										action="#{clienteBean.excluiCliente()}" type="submit"
+										name="confirmaExclusao" />
+									<h:commandButton value="Cancelar"
+										class="modal-action modal-close waves-effect waves-red btn-flat"
+										type="button" name="cancelarExclusao" />
+								</div>
+							</div>
+							<!-- Alerta de sucesso -->
+							<div id="modal2" class="modal">
+								<div class="modal-content">
+									<h4>Sucesso</h4>
+									<p>Registro salvo com sucesso.</p>
+								</div>
+
+								<div class="modal-footer">
+									<h:commandLink value="OK"
+										class="modal-action modal-close waves-effect waves-green btn-flat"
+										action="pesquisa_cliente?faces-redirect=true" type="submit"
+										name="sucesso" />
+								</div>
+							</div>
+							<!-- Exclusão de sucesso -->
+							<div id="modal3" class="modal">
+								<div class="modal-content">
+									<h4>Sucesso</h4>
+									<p>Registro excluído com sucesso.</p>
+								</div>
+
+								<div class="modal-footer">
+									<h:commandLink value="OK"
+										class="modal-action modal-close waves-effect waves-green btn-flat"
+										action="pesquisa_cliente?faces-redirect=true" type="submit"
+										name="sucesso" />
+								</div>
+							</div>
+						</h:form>
+						<!-- Fim estrutura modal -->
+
+						<h:form id="formValidate" prependId="false">
+
+							<div class="row">
+								<div class="input-field col s6">
+									<h:inputText value="#{clienteBean.cliente.nomeRazao}"
+										id="nomeRazao" name="nomeRazao" aria-required="true" />
+									<h:outputLabel class="active" value="Nome Razão Social"
+										for="nomeRazao" />
+								</div>
+								<div class="input-field col s6">
+									<h:inputText value="#{clienteBean.cliente.tipoPessoa}"
+										id="tipoPessoa" name="tipoPessoa" aria-required="true" />
+									<h:outputLabel class="active" value="Tipo Pessoa"
+										for="tipoPessoa" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<h:inputText value="#{clienteBean.cliente.cpfCnpj}"
+										id="cpfCnpj" name="cpfCnpj" aria-required="true" />
+									<h:outputLabel class="active" value="CNPJ" for="cpfCnpj" />
+								</div>
+							</div>
+
+
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<h:outputScript>
+		function salvar() {
+			$('#modal2').openModal();			
+		}
+		function excluir() {
+			$('#modal3').openModal();			
+		}
+	</h:outputScript>
+
+		<h:outputScript target="form">
+$(function() {
+	
+	$('#apresenta').click(function() {
+		$('#modal1').openModal();
+	});
+	
+});
+
+	
+$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+});
+
+$(document).ready(function(){
+<!-- Validação do formulário -->
+$.validator.setDefaults({
+	errorClass: 'invalid',
+    validClass: "valid",
+    errorPlacement: function (error, element) {
+		$(element)
+		.closest("form")
+		.find("label[for='" + element.attr("id") + "']")
+		.attr('data-error', error.text());
+	},
+	submitHandler: function() {
+		console.log("submitted!");
+		document.getElementById("formValidate").submit();
+	}
+});
+$("#formValidate").validate({	
+	rules: {
+		nome: {
+			required: true,
+			minlength: 4
+		},
+		usuario: {
+			required: true,
+			minlength: 4
+		},
+		senha: {
+			required: true,
+			minlength: 5,
+		},
+		confirmaSenha: {
+			equalTo: "#senha",
+			required: true
+		}
+	},
+	messages: {
+		nome: {
+			required: "Campo obrigatório",
+			minlength: "Mínimo 4 caracteres"
+		},
+		usuario: {
+			required: "Campo obrigatório",
+			minlength: "Minímo 4 caracteres"
+		},
+		senha: {
+			required: "Campo obrigatório",
+			minlength: "A senha deve ter mais do que 5 caracteres"
+		},
+		confirmaSenha: {
+			required: "Campo obrigatório",
+			minlength: "A senha deve ter mais do que 5 caracteres",
+			equalTo: "As senhas não coincidem"			
+		}				
+	},
+});
+
+});
+</h:outputScript>
+		<h:outputStylesheet>
+label {
+    width: 100%;
+}
+.input-field label {
+    font-size:
+     0.8rem;
+    -webkit-transform: translateY(-140%);
+    -moz-transform: translateY(-140%);
+    -ms-transform: translateY(-140%);
+    -o-transform: translateY(-140%);
+    transform: translateY(-140%);
+}
+		</h:outputStylesheet>
+	</ui:define>
+</ui:composition>
+</html>

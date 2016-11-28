@@ -37,7 +37,7 @@
 	</error-page>
 	<error-page>
 		<error-code>401</error-code>
-		<location>/login.xhtml?faces-redirect=true</location>
+		<location>/errorPages/expiredSession.xhtml?faces-redirect=true</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>

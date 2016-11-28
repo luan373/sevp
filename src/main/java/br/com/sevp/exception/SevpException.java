@@ -1,4 +1,4 @@
-package br.com.sevp.excpetion;
+package br.com.sevp.exception;
 
 public class SevpException extends Exception {
 
