@@ -2,7 +2,6 @@ package br.com.sevp.controller.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import javax.faces.context.FacesContext;
 import br.com.sevp.controller.bll.UsuarioBll;
 import br.com.sevp.model.dao.AbstractNavigation;
 import br.com.sevp.model.entity.Usuario;
-import br.com.sevp.util.UtilCriptografia;
 
 @ManagedBean(name = "usuarioPesquisaBean")
 @ViewScoped

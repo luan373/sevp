@@ -75,7 +75,7 @@ public class Estados implements java.io.Serializable {
 		return this.cidades;
 	}
 
-	public void setCidadeses(Set<Cidades> cidades) {
+	public void setCidades(Set<Cidades> cidades) {
 		this.cidades = cidades;
 	}
 

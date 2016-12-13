@@ -61,7 +61,6 @@ public class Cifrador {
 		Cifrador cifrador = new Cifrador("ola");
 		
 		
-		String algo = "3";
 		String algo1 = "ARijEumRikveQUlOCnSXoA==";
 		//cifrador.encripta(algo);
 		System.out.println(algo1);

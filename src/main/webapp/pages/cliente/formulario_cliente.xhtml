@@ -1,15 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/templates/principal.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
-<ui:composition template="/templates/principal.xhtml">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<ui:define name="conteudo">
 		<div class="container">
 			<div class="row">
 				<div class="col s12 m12 l12">
 					<h5 class="breadcrumbs-title">#{clienteBean.addTituloPagina()}</h5>
-
+					<div class="divider" />
 					<div class="row">
 						<!-- Estrutura da modal -->
 						<h:form>
@@ -61,6 +61,10 @@
 						<!-- Fim estrutura modal -->
 
 						<h:form id="formValidate" prependId="false">
+							<div class="col s12">
+								<h6 class="header">Dados Pessoais</h6>
+								<br />
+							</div>
 
 							<div class="row">
 								<div class="input-field col s6">
@@ -70,122 +74,211 @@
 										for="nomeRazao" />
 								</div>
 								<div class="input-field col s6">
-									<h:inputText value="#{clienteBean.cliente.tipoPessoa}"
-										id="tipoPessoa" name="tipoPessoa" aria-required="true" />
-									<h:outputLabel class="active" value="Tipo Pessoa"
-										for="tipoPessoa" />
+									<h:inputText value="#{clienteBean.cliente.dataNascimento}"
+										id="dtNascimento" name="dtNascimento" aria-required="true"
+										class="flatpickr">
+									</h:inputText>
+									<h:outputLabel class="active" value="Data de Nascimento"
+										for="dtNascimento" />
 								</div>
 							</div>
 							<div class="row">
-								<div class="input-field col s12">
+								<div class="input-field col s6">
+									<h:outputLabel class="active" value="Tipo Pessoa"
+										for="tipoPessoa" />
+									<h:selectOneMenu value="#{clienteBean.cliente.tipoPessoa}"
+										id="tipoPessoa" name="tipoPessoa" aria-required="true">
+										<f:selectItem itemDisabled="true"
+											itemLabel="Selecione uma opção" />
+										<f:selectItem itemValue="fisica" itemLabel="Pessoa Física" />
+										<f:selectItem itemValue="juridica" itemLabel="Pessoa Jurídica" />
+									</h:selectOneMenu>
+
+								</div>
+								<div class="input-field col s6">
 									<h:inputText value="#{clienteBean.cliente.cpfCnpj}"
 										id="cpfCnpj" name="cpfCnpj" aria-required="true" />
 									<h:outputLabel class="active" value="CNPJ" for="cpfCnpj" />
 								</div>
 							</div>
-
+							<div class="row">
+								<div class="input-field col s6">
+									<h:inputText value="#{clienteBean.cliente.telefone}"
+										id="telefone" name="telefone" aria-required="true" />
+									<h:outputLabel class="active" value="Telefone" for="telefone" />
+								</div>
+								<div class="input-field col s6">
+									<h:inputText value="#{clienteBean.cliente.email}" id="email"
+										name="email" aria-required="true" />
+									<h:outputLabel class="active" value="E-mail" for="email" />
+								</div>
+							</div>
+							<div class="col s12">
+								<div class="divider" />
+								<h6 class="header">Endereço</h6>
+								<br />
+							</div>
+							<div class="row">
+								<div class="input-field col s6">
+									<h:outputLabel class="active" value="UF" for="uf" />
+									<h:selectOneMenu value="#{clienteBean.cliente.uf}" id="uf"
+										name="uf" aria-required="true">
+										<f:selectItem noSelectionOption="true"
+											itemLabel="Selecione uma opção" />
+										<f:selectItems value="#{clienteBean.listaUFs}" var="_ufs"
+											itemValue="#{_ufs.sigla}" itemLabel="#{_ufs.sigla}" />
+										<f:ajax listener="#{clienteBean.changeEstado()}"
+											event="change" render="@form cidades" />
+									</h:selectOneMenu>
+								</div>
+								<div class="input-field col s6">
+									<h:selectOneMenu value="#{clienteBean.cliente.cidade}"
+										id="cidades" name="cidades" aria-required="true">
+										<ui:repeat var="_cidades" value="#{clienteBean.cidades}">
+											<f:selectItem itemValue="#{_cidades.nome}"
+												itemLabel="#{_cidades.nome}" />
+										</ui:repeat>
+									</h:selectOneMenu>
+									<h:outputLabel class="active" value="Cidade" for="cidades" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s5">
+									<h:inputText value="#{clienteBean.cliente.logradouro}"
+										id="logradouro" name="logradouro" aria-required="true" />
+									<h:outputLabel class="active" value="Logradouro"
+										for="logradouro" />
+								</div>
+								<div class="input-field col s2">
+									<h:inputText value="#{clienteBean.cliente.numero}" id="numero"
+										name="numero" aria-required="true" />
+									<h:outputLabel class="active" value="Número" for="numero" />
+								</div>
+								<div class="input-field col s5">
+									<h:inputText value="#{clienteBean.cliente.complemento}"
+										id="complemento" name="complemento" aria-required="true" />
+									<h:outputLabel class="active" value="Complemento"
+										for="complemento" />
+								</div>
+							</div>
 
 						</h:form>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- flatpickr -->
+		<h:outputStylesheet library="css/flatpickr" name="flatpickr.min.css" />
+		<h:outputScript library="js/flatpickr" name="flatpickr.js" />
+		<h:outputScript library="js/flatpickr/l10n" name="pt.js" />
+
 		<h:outputScript>
-		function salvar() {
-			$('#modal2').openModal();			
-		}
-		function excluir() {
-			$('#modal3').openModal();			
-		}
-	</h:outputScript>
+			function salvar() {
+				$('#modal2').openModal();			
+			}
+			function excluir() {
+				$('#modal3').openModal();			
+			}
+			flatpickr(".flatpickr");
+			flatpickr(".flatpickr", {
+    			"locale": "pt",
+    			maxDate: new Date(),
+    			"readonly": "fase"
+			});
+		</h:outputScript>
 
 		<h:outputScript target="form">
-$(function() {
-	
-	$('#apresenta').click(function() {
-		$('#modal1').openModal();
-	});
-	
-});
-
-	
-$(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal-trigger').leanModal();
-});
-
-$(document).ready(function(){
-<!-- Validação do formulário -->
-$.validator.setDefaults({
-	errorClass: 'invalid',
-    validClass: "valid",
-    errorPlacement: function (error, element) {
-		$(element)
-		.closest("form")
-		.find("label[for='" + element.attr("id") + "']")
-		.attr('data-error', error.text());
-	},
-	submitHandler: function() {
-		console.log("submitted!");
-		document.getElementById("formValidate").submit();
-	}
-});
-$("#formValidate").validate({	
-	rules: {
-		nome: {
-			required: true,
-			minlength: 4
-		},
-		usuario: {
-			required: true,
-			minlength: 4
-		},
-		senha: {
-			required: true,
-			minlength: 5,
-		},
-		confirmaSenha: {
-			equalTo: "#senha",
-			required: true
-		}
-	},
-	messages: {
-		nome: {
-			required: "Campo obrigatório",
-			minlength: "Mínimo 4 caracteres"
-		},
-		usuario: {
-			required: "Campo obrigatório",
-			minlength: "Minímo 4 caracteres"
-		},
-		senha: {
-			required: "Campo obrigatório",
-			minlength: "A senha deve ter mais do que 5 caracteres"
-		},
-		confirmaSenha: {
-			required: "Campo obrigatório",
-			minlength: "A senha deve ter mais do que 5 caracteres",
-			equalTo: "As senhas não coincidem"			
-		}				
-	},
-});
-
-});
-</h:outputScript>
+			$(function() {			
+			    $('#apresenta').click(function() {
+			        $('#modal1').openModal();
+			    });			
+			});
+			
+			$(document).ready(function() {
+			    $('select').material_select();
+			});
+			
+			$(document).ready(function() {
+			    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+			    $('.modal-trigger').leanModal();
+			});
+			
+			$('.datepicker').pickadate({
+   				selectMonths: true, // Creates a dropdown to control month
+    			selectYears: 15 // Creates a dropdown of 15 years to control year
+  			});
+			
+			$(document).ready(function() {
+			    <!-- Validação do formulário -->
+			    $.validator.setDefaults({
+			        errorClass: 'invalid',
+			        validClass: "valid",
+			        errorPlacement: function(error, element) {
+			            $(element)
+			                .closest("form")
+			                .find("label[for='" + element.attr("id") + "']")
+			                .attr('data-error', error.text());
+			        },
+			        submitHandler: function() {
+			            console.log("submitted!");
+			            document.getElementById("formValidate").submit();
+			        }
+			    });
+			    $("#formValidate").validate({
+			        rules: {
+			            nome: {
+			                required: true,
+			                minlength: 4
+			            },
+			            usuario: {
+			                required: true,
+			                minlength: 4
+			            },
+			            senha: {
+			                required: true,
+			                minlength: 5,
+			            },
+			            confirmaSenha: {
+			                equalTo: "#senha",
+			                required: true
+			            }
+			        },
+			        messages: {
+			            nome: {
+			                required: "Campo obrigatório",
+			                minlength: "Mínimo 4 caracteres"
+			            },
+			            usuario: {
+			                required: "Campo obrigatório",
+			                minlength: "Minímo 4 caracteres"
+			            },
+			            senha: {
+			                required: "Campo obrigatório",
+			                minlength: "A senha deve ter mais do que 5 caracteres"
+			            },
+			            confirmaSenha: {
+			                required: "Campo obrigatório",
+			                minlength: "A senha deve ter mais do que 5 caracteres",
+			                equalTo: "As senhas não coincidem"
+			            }
+			        },
+			    });
+			
+			});
+		</h:outputScript>
 		<h:outputStylesheet>
-label {
-    width: 100%;
-}
-.input-field label {
-    font-size:
-     0.8rem;
-    -webkit-transform: translateY(-140%);
-    -moz-transform: translateY(-140%);
-    -ms-transform: translateY(-140%);
-    -o-transform: translateY(-140%);
-    transform: translateY(-140%);
-}
+			label {
+			    width: 100%;
+			}
+			.input-field label {
+			    font-size:
+			     0.8rem;
+			    -webkit-transform: translateY(-140%);
+			    -moz-transform: translateY(-140%);
+			    -ms-transform: translateY(-140%);
+			    -o-transform: translateY(-140%);
+			    transform: translateY(-140%);
+			}
 		</h:outputStylesheet>
 	</ui:define>
 </ui:composition>
-</html>

@@ -6,7 +6,6 @@ import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.script.ScriptException;
 
 import br.com.sevp.model.dao.AbstractJs;
